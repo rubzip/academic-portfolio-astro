@@ -18,7 +18,6 @@ const { Content } = await render(project);
     <article class="project-content">
         <header>
             <h1>{project.data.title}</h1>
-            <p class="description">{project.data.description}</p>
             {
                 project.data.tech && (
                     <div class="tech-stack">
@@ -28,6 +27,7 @@ const { Content } = await render(project);
                     </div>
                 )
             }
+            <p class="description">{project.data.description}</p>
         </header>
 
         <div class="links">
@@ -50,47 +50,58 @@ const { Content } = await render(project);
 
 <style>
     .project-content {
-        max-width: 700px;
+        max-width: 800px;
         margin: 0 auto;
+        padding-top: 2rem;
     }
     header {
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
     }
     h1 {
-        font-size: 2.5rem;
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
         font-weight: 800;
         margin: 0;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
     }
     .description {
         font-size: 1.2rem;
-        margin-top: 1rem;
+        margin-top: 1.5rem;
         color: var(--text-muted);
+        line-height: 1.5;
+        font-weight: 500;
     }
     .tech-stack {
-        margin-top: 1.5rem;
+        margin-top: 2rem;
         display: flex;
-        gap: 0.5rem;
+        gap: 0.75rem;
         flex-wrap: wrap;
     }
     .tech-tag {
         font-size: 0.85rem;
-        background: var(--sidebar-bg);
-        border: 1px solid var(--border);
-        padding: 0.25rem 0.75rem;
-        border-radius: 4px;
+        color: var(--accent);
+        font-weight: 700;
+        opacity: 0.8;
     }
     .links {
-        margin-bottom: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 3rem;
     }
     .links a {
-        font-weight: 600;
+        font-weight: 700;
         text-decoration: none;
-        border-bottom: 1px solid currentColor;
+        color: var(--foreground);
+        font-size: 1rem;
+        transition: color 0.2s;
+    }
+    .links a:hover {
+        color: var(--accent);
+        text-decoration: underline;
     }
     hr {
         border: 0;
-        border-top: 1px solid var(--border);
-        margin: 2rem 0;
+        border-top: 1px dashed var(--border);
+        margin: 3rem 0;
     }
     .prose {
         line-height: 1.8;

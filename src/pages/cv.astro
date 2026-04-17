@@ -20,16 +20,22 @@ const { name, experience, education, skills } = cvEntry.data;
 
     <section class="cv-section">
         <h2>Professional Experience</h2>
-        <div class="entries">
+        <div class="timeline">
             {
                 experience.map((exp) => (
-                    <div class="cv-entry">
-                        <div class="entry-header">
-                            <h3>{exp.role}</h3>
-                            <span class="period">{exp.period}</span>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <div class="dot" />
+                            <div class="line" />
                         </div>
-                        <div class="institution">{exp.institution}</div>
-                        <div class="desc">{exp.description}</div>
+                        <div class="timeline-content">
+                            <div class="entry-header">
+                                <h3>{exp.role}</h3>
+                                <span class="period">{exp.period}</span>
+                            </div>
+                            <div class="institution">{exp.institution}</div>
+                            <div class="desc">{exp.description}</div>
+                        </div>
                     </div>
                 ))
             }
@@ -38,20 +44,26 @@ const { name, experience, education, skills } = cvEntry.data;
 
     <section class="cv-section">
         <h2>Education</h2>
-        <div class="entries">
+        <div class="timeline">
             {
                 education.map((edu) => (
-                    <div class="cv-entry">
-                        <div class="entry-header">
-                            <h3>{edu.degree}</h3>
-                            <span class="period">{edu.period}</span>
+                    <div class="timeline-item">
+                        <div class="timeline-marker">
+                            <div class="dot" />
+                            <div class="line" />
                         </div>
-                        <div class="institution">{edu.institution}</div>
-                        {edu.thesis && (
-                            <div class="thesis">
-                                <em>Thesis: {edu.thesis}</em>
+                        <div class="timeline-content">
+                            <div class="entry-header">
+                                <h3>{edu.degree}</h3>
+                                <span class="period">{edu.period}</span>
                             </div>
-                        )}
+                            <div class="institution">{edu.institution}</div>
+                            {edu.thesis && (
+                                <div class="thesis">
+                                    <em>Thesis: {edu.thesis}</em>
+                                </div>
+                            )}
+                        </div>
                     </div>
                 ))
             }
@@ -82,53 +94,97 @@ const { name, experience, education, skills } = cvEntry.data;
         margin-bottom: 0.5rem;
     }
     .cv-section {
-        margin-bottom: 3rem;
+        margin-bottom: 5rem;
     }
     h2 {
         font-size: 1.75rem;
-        border-bottom: 1px solid var(--border);
-        padding-bottom: 0.5rem;
-        margin-bottom: 1.5rem;
+        margin-bottom: 2.5rem;
+        font-weight: 800;
         letter-spacing: -0.01em;
+        color: var(--foreground);
+        opacity: 0.9;
     }
-    .entries {
+    .timeline {
         display: flex;
         flex-direction: column;
+    }
+    .timeline-item {
+        display: flex;
         gap: 2rem;
     }
-    .cv-entry {
+    .timeline-marker {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        flex-shrink: 0;
+    }
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--accent);
+        margin-top: 0.5rem;
+        z-index: 1;
+    }
+    .line {
+        flex: 1;
+        width: 2px;
+        background: var(--border);
+        margin: 0.5rem 0;
+    }
+    .timeline-item:last-child .line {
+        display: none;
+    }
+    .timeline-content {
+        padding-bottom: 3.5rem;
+        flex: 1;
+    }
+    .timeline-item:last-child .timeline-content {
+        padding-bottom: 0;
     }
     .entry-header {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
     }
-    .cv-entry h3:hover {
+    h3 {
+        font-size: 1.5rem;
+        margin: 0;
+        font-weight: 700;
+        line-height: 1.2;
+        transition: color 0.2s;
+    }
+    h3:hover {
         color: var(--accent);
     }
     .period {
         font-size: 0.9rem;
         color: var(--text-muted);
-        font-weight: 500;
+        font-weight: 600;
+        white-space: nowrap;
     }
     .institution {
         font-weight: 600;
-        margin: 0.25rem 0;
+        font-size: 1.1rem;
+        color: var(--foreground);
+        opacity: 0.9;
     }
     .desc,
     .thesis {
-        margin-top: 0.5rem;
-        line-height: 1.5;
+        margin-top: 1rem;
+        line-height: 1.6;
+        opacity: 0.85;
     }
     .skills-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem 1rem;
+        gap: 0.75rem 1.25rem;
     }
     .skill-item {
-        font-weight: 500;
-        color: var(--foreground);
+        font-weight: 600;
+        color: var(--text-muted);
+        font-size: 1rem;
     }
 </style>

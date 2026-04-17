@@ -26,6 +26,7 @@ const { Content } = await render(post);
 <Layout title={post.data.title} description={post.data.description}>
     <article class="post-container">
         <header class="post-header">
+            <h1>{post.data.title}</h1>
             <div class="meta">
                 <time datetime={post.data.pubDate.toISOString()}>
                     {
@@ -43,7 +44,6 @@ const { Content } = await render(post);
                     >{getReadingTime(post.body || "")} min read</span
                 >
             </div>
-            <h1>{post.data.title}</h1>
             <div class="tags">
                 {post.data.tags.map((tag) => <span class="tag">#{tag}</span>)}
             </div>
