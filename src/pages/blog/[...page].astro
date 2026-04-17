@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import { SITE } from "../../config";
+import { getReadingTime } from "../../utils/readingTime";
 
 export async function getStaticPaths({ paginate }) {
     const posts = await getCollection("posts");
@@ -36,6 +37,10 @@ const { page } = Astro.props;
                                     month: "long",
                                     day: "numeric",
                                 })}
+                            </span>
+                            <span class="separator">•</span>
+                            <span class="reading-time">
+                                {getReadingTime(post.body || "")} min read
                             </span>
                         </div>
                     </div>
@@ -156,33 +161,41 @@ const { page } = Astro.props;
 
     .pagination {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
         align-items: center;
         margin-top: 5rem;
-        padding-top: 2rem;
+        padding-top: 3rem;
         border-top: 1px dashed var(--border);
+        gap: 2rem;
     }
     .pagination a,
     .pagination span {
-        font-size: 0.9rem;
+        font-size: 1rem;
         font-weight: 600;
         text-decoration: none;
+        transition: all 0.2s;
     }
     .pagination a {
         color: var(--foreground);
-        transition: color 0.2s;
     }
     .pagination a:hover {
         color: var(--accent);
+        text-decoration: underline;
+        text-underline-offset: 4px;
     }
     .pagination .disabled {
         color: var(--text-muted);
-        opacity: 0.5;
+        opacity: 0.3;
         cursor: not-allowed;
     }
     .page-count {
-        font-size: 0.85rem;
+        font-size: 0.95rem;
         color: var(--text-muted);
         font-weight: 500;
+        margin: 0 1rem;
+    }
+    .separator {
+        opacity: 0.5;
+        margin: 0 0.25rem;
     }
 </style>

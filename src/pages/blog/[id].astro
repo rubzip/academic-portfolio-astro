@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import { getReadingTime } from "../../utils/readingTime";
 
 export async function getStaticPaths() {
     const posts = await getCollection("posts");
@@ -24,8 +25,6 @@ const { Content } = await render(post);
 
 <Layout title={post.data.title} description={post.data.description}>
     <article class="post-container">
-        <a href="/blog" class="back-link">&larr; Back to Blog</a>
-
         <header class="post-header">
             <div class="meta">
                 <time datetime={post.data.pubDate.toISOString()}>
@@ -39,6 +38,10 @@ const { Content } = await render(post);
                 </time>
                 <span class="separator">•</span>
                 <span class="author">By {post.data.author}</span>
+                <span class="separator">•</span>
+                <span class="reading-time"
+                    >{getReadingTime(post.body || "")} min read</span
+                >
             </div>
             <h1>{post.data.title}</h1>
             <div class="tags">
@@ -56,7 +59,7 @@ const { Content } = await render(post);
             {
                 prevPost && (
                     <a href={`/blog/${prevPost.id}`} class="nav-prev">
-                        <span class="nav-label">Newer Post</span>
+                        <span class="nav-label">&larr; Previous Post</span>
                         <span class="nav-title">{prevPost.data.title}</span>
                     </a>
                 )
@@ -65,7 +68,7 @@ const { Content } = await render(post);
             {
                 nextPost && (
                     <a href={`/blog/${nextPost.id}`} class="nav-next">
-                        <span class="nav-label">Older Post</span>
+                        <span class="nav-label">Next Post &rarr;</span>
                         <span class="nav-title">{nextPost.data.title}</span>
                     </a>
                 )
@@ -79,18 +82,6 @@ const { Content } = await render(post);
         max-width: 800px;
         margin: 0 auto;
         padding-top: 2rem;
-    }
-    .back-link {
-        display: inline-block;
-        margin-bottom: 3rem;
-        font-size: 0.9rem;
-        font-weight: 600;
-        text-decoration: none;
-        color: var(--text-muted);
-        transition: color 0.2s;
-    }
-    .back-link:hover {
-        color: var(--accent);
     }
     .post-header {
         margin-bottom: 3rem;
