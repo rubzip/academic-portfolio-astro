@@ -1,5 +1,6 @@
 ---
 import { SITE } from "../config";
+import { ClientRouter } from "astro:transitions";
 import LeftSidebar from "../components/LeftSidebar.astro";
 import RightMain from "../components/RightMain.astro";
 import "../styles/global.css";
@@ -7,25 +8,53 @@ import "../styles/global.css";
 interface Props {
     title: string;
     description?: string;
+    ogImage?: string;
 }
 
-const { title, description = SITE.desc } = Astro.props;
+const { title, description = SITE.desc, ogImage = SITE.ogImage } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
 ---
 
 <!doctype html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+
+        <!-- Canonical URL -->
+        <link rel="canonical" href={canonicalURL} />
+
+        <!-- General Meta Tags -->
+        <title>{title} | {SITE.title}</title>
+        <meta name="title" content={`${title} | ${SITE.title}`} />
+        <meta name="description" content={description} />
+        <meta name="author" content={SITE.author} />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL(ogImage, Astro.url)} />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={title} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={new URL(ogImage, Astro.url)} />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
             rel="stylesheet"
         />
-        <title>{title} | {SITE.title}</title>
+
+        <ClientRouter />
 
         <!-- KaTeX CSS -->
         <link
@@ -35,22 +64,21 @@ const { title, description = SITE.desc } = Astro.props;
 
         <!-- Dark Mode Script -->
         <script is:inline>
-            const theme = (() => {
+            const setTheme = () => {
                 const savedTheme =
                     typeof localStorage !== "undefined" &&
                     localStorage.getItem("theme");
-                if (savedTheme) return savedTheme;
-                return window.matchMedia("(prefers-color-scheme: dark)").matches
-                    ? "dark"
-                    : "light";
-            })();
+                const theme =
+                    savedTheme ||
+                    (window.matchMedia("(prefers-color-scheme: dark)").matches
+                        ? "dark"
+                        : "light");
 
-            if (theme === "light") {
-                document.documentElement.classList.remove("dark");
-            } else {
-                document.documentElement.classList.add("dark");
-            }
-            window.localStorage.setItem("theme", theme);
+                document.documentElement.setAttribute("data-theme", theme);
+            };
+
+            setTheme();
+            document.addEventListener("astro:after-swap", setTheme);
         </script>
     </head>
     <body class="bg-background text-foreground transition-colors duration-300">
@@ -64,12 +92,24 @@ const { title, description = SITE.desc } = Astro.props;
         </div>
 
         <script>
-            const toggle = document.getElementById("theme-toggle");
-            toggle?.addEventListener("click", () => {
-                const isDark =
-                    document.documentElement.classList.toggle("dark");
-                localStorage.setItem("theme", isDark ? "dark" : "light");
-            });
+            function setupThemeToggle() {
+                const toggle = document.getElementById("theme-toggle");
+                toggle?.addEventListener("click", () => {
+                    const currentTheme =
+                        document.documentElement.getAttribute("data-theme") ||
+                        "light";
+                    const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+                    document.documentElement.setAttribute(
+                        "data-theme",
+                        newTheme,
+                    );
+                    localStorage.setItem("theme", newTheme);
+                });
+            }
+
+            setupThemeToggle();
+            document.addEventListener("astro:page-load", setupThemeToggle);
         </script>
     </body>
 </html>

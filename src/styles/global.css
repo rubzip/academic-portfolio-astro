@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @theme {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
@@ -9,22 +11,24 @@
     --color-text-muted: var(--text-muted);
 }
 
-:root {
-    --accent: #2c3e50;
-    --background: #ffffff;
-    --foreground: #212121;
-    --sidebar-bg: #f9f9f9;
-    --border: #eeeeee;
-    --text-muted: #666666;
+:root,
+html[data-theme="light"] {
+    --accent: #006cac;
+    --background: #fdfdfd;
+    --foreground: #282728;
+    --sidebar-bg: var(--background);
+    --border: #ece9e9;
+    --text-muted: #555555;
 }
 
+html[data-theme="dark"],
 html.dark {
-    --accent: #ecf0f1;
-    --background: #111111;
-    --foreground: #e0e0e0;
-    --sidebar-bg: #1a1a1a;
-    --border: #2a2a2a;
-    --text-muted: #888888;
+    --accent: #ff6b01;
+    --background: #212737;
+    --foreground: #eaedf3;
+    --sidebar-bg: var(--background);
+    --border: #ab4b08;
+    --text-muted: #a0a6b1;
 }
 
 html {
@@ -48,14 +52,13 @@ main h1 {
 }
 
 main h2 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 700;
-    margin-top: 3rem;
+    margin-top: 4rem;
     margin-bottom: 1.5rem;
     border-bottom: 1px solid var(--border);
     padding-bottom: 0.5rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: -0.01em;
 }
 
 main p {
@@ -75,7 +78,8 @@ main a {
 }
 
 main a:hover {
-    opacity: 0.7;
+    color: var(--accent);
+    opacity: 1;
 }
 
 /* MathML hide fallback */

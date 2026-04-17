@@ -12,6 +12,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.18",
     "@tailwindcss/vite": "^4.2.2",
     "astro": "^6.1.7",
     "rehype-katex": "^7.0.1",

@@ -60,8 +60,15 @@ const { name, experience, education, skills } = cvEntry.data;
 
     <section class="cv-section">
         <h2>Skills</h2>
-        <div class="skills-grid">
-            {skills.map((skill) => <span class="skill-tag">{skill}</span>)}
+        <div class="skills-list">
+            {
+                skills.map((skill, index) => (
+                    <span class="skill-item">
+                        {skill}
+                        {index < skills.length - 1 ? " • " : ""}
+                    </span>
+                ))
+            }
         </div>
     </section>
 </Layout>
@@ -78,12 +85,11 @@ const { name, experience, education, skills } = cvEntry.data;
         margin-bottom: 3rem;
     }
     h2 {
-        font-size: 1.5rem;
-        border-bottom: 2px solid var(--border);
+        font-size: 1.75rem;
+        border-bottom: 1px solid var(--border);
         padding-bottom: 0.5rem;
         margin-bottom: 1.5rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: -0.01em;
     }
     .entries {
         display: flex;
@@ -99,9 +105,8 @@ const { name, experience, education, skills } = cvEntry.data;
         justify-content: space-between;
         align-items: baseline;
     }
-    .cv-entry h3 {
-        margin: 0;
-        font-size: 1.2rem;
+    .cv-entry h3:hover {
+        color: var(--accent);
     }
     .period {
         font-size: 0.9rem;
@@ -117,16 +122,13 @@ const { name, experience, education, skills } = cvEntry.data;
         margin-top: 0.5rem;
         line-height: 1.5;
     }
-    .skills-grid {
+    .skills-list {
         display: flex;
         flex-wrap: wrap;
-        gap: 1rem;
+        gap: 0.5rem 1rem;
     }
-    .skill-tag {
-        background: var(--sidebar-bg);
-        border: 1px solid var(--border);
-        padding: 0.5rem 1rem;
-        border-radius: 6px;
+    .skill-item {
         font-weight: 500;
+        color: var(--foreground);
     }
 </style>

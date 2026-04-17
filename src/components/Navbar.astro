@@ -1,12 +1,5 @@
 ---
-const links = [
-    { href: "/", label: "Home" },
-    { href: "/publications", label: "Publications" },
-    { href: "/talks", label: "Talks" },
-    { href: "/projects", label: "Code" },
-    { href: "/cv", label: "CV" },
-    { href: "/blog", label: "Blog" },
-];
+import { NAV_LINKS } from "../config";
 
 const currentPath = Astro.url.pathname;
 ---
@@ -16,21 +9,21 @@ const currentPath = Astro.url.pathname;
 >
     <ul class="flex gap-x-8 gap-y-4 list-none p-0 flex-wrap items-center">
         {
-            links.map((link) => (
+            NAV_LINKS.map((link) => (
                 <li>
                     <a
                         href={link.href}
-                        class={`no-underline font-semibold text-[1.1rem] transition-all duration-200 hover:text-foreground relative group ${
+                        class={`no-underline font-semibold text-[1.1rem] transition-all duration-200 hover:text-accent relative group ${
                             currentPath === link.href ||
                             (link.href !== "/" &&
                                 currentPath.startsWith(link.href))
-                                ? "text-foreground"
+                                ? "text-accent"
                                 : "text-text-muted"
                         }`}
                     >
                         {link.label}
                         <span
-                            class={`absolute -bottom-2 left-0 w-0 h-1 bg-foreground transition-all duration-300 group-hover:w-full ${
+                            class={`absolute -bottom-2 left-0 w-0 h-1 bg-accent transition-all duration-300 group-hover:w-full ${
                                 currentPath === link.href ||
                                 (link.href !== "/" &&
                                     currentPath.startsWith(link.href))
@@ -47,7 +40,7 @@ const currentPath = Astro.url.pathname;
     <button
         id="theme-toggle"
         aria-label="Toggle Dark Mode"
-        class="flex items-center justify-center p-2 rounded-lg border border-border hover:bg-border transition-all duration-300 bg-transparent text-foreground cursor-pointer group shrink-0 ml-4"
+        class="flex items-center justify-center p-2 hover:text-accent transition-all duration-300 bg-transparent text-foreground cursor-pointer group shrink-0 ml-4"
     >
         <div class="relative w-5 h-5">
             <svg

@@ -1,0 +1,25 @@
+---
+import { SITE } from "../config";
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+    class="mt-24 pb-12 border-t border-border pt-8 text-text-muted text-[0.9rem]"
+>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p>
+            &copy; {currentYear}
+            {SITE.author}. All rights reserved.
+        </p>
+        <p class="font-medium">
+            Built with <a
+                href="https://astro.build"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-foreground transition-colors underline decoration-border underline-offset-4"
+                >Astro</a
+            >
+        </p>
+    </div>
+</footer>

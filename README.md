@@ -1,43 +1,22 @@
-# Astro Starter Kit: Minimal
+# Astro Academics Page
+An Astro template for yout academic portfolio. This template is strongly inspired by [academic pages](https://github.com/academicpages/academicpages.github.io) and [astro paper](https://github.com/satnaing/astro-paper).
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Designed to be easy to use and customize, with a focus on content and presentation.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Customization Guide
 
-## 🚀 Project Structure
+### 1. Update Site Configuration
+Edit `src/config.ts` to change the site title, description, and social links.
 
-Inside of your Astro project, you'll see the following folders and files:
+### 2. Add Your Content
+- **Publications**: Add your publications to `src/content/publications/`.
+- **Blog Posts**: Add your blog posts to `src/content/posts/`.
+- **Projects**: Add your projects to `src/content/projects/`.
+- **Bio**: Edit `src/content/bio/bio.md` to update your biography.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+### 3. Customize Appearance
+- **Colors**: Edit `src/styles/global.css` to change the color scheme.
+- **Layout**: Edit `src/layouts/Layout.astro` to change the layout.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### 4. Deploy
+Push your changes to GitHub and deploy to Netlify, Vercel, or any other hosting provider.

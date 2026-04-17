@@ -28,10 +28,10 @@ const { Content: BioContent } = bioEntry
 	</section>
 
 	<section class="recent-work">
-		<div class="grid">
+		<div class="featured-list">
 			{
 				featuredPub && (
-					<div class="card">
+					<div class="featured-item">
 						<h3>Featured Publication</h3>
 						<a
 							href={`/publications/${featuredPub.id}`}
@@ -51,7 +51,7 @@ const { Content: BioContent } = bioEntry
 			}
 			{
 				featuredProject && (
-					<div class="card">
+					<div class="featured-item">
 						<h3>Featured Code</h3>
 						<a
 							href={`/projects/${featuredProject.id}`}
@@ -67,7 +67,7 @@ const { Content: BioContent } = bioEntry
 			}
 			{
 				latestPost && (
-					<div class="card">
+					<div class="featured-item">
 						<h3>Latest Post</h3>
 						<a href={`/blog/${latestPost.id}`} class="title-link">
 							<p>{latestPost.data.title}</p>
@@ -108,28 +108,19 @@ const { Content: BioContent } = bioEntry
 		margin-bottom: 1rem;
 		padding-left: 1.5rem;
 	}
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-		gap: 2rem;
-	}
-	.card {
-		padding: 1.5rem;
-		border: 1px solid var(--border);
-		border-radius: 8px;
-		background: var(--sidebar-bg);
-		transition:
-			transform 0.2s,
-			box-shadow 0.2s;
+	.featured-list {
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		gap: 3rem;
 	}
-	.card:hover {
-		transform: translateY(-4px);
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	.featured-item {
+		padding-bottom: 2rem;
+		border-bottom: 1px solid var(--border);
 	}
-	.card h3 {
+	.featured-item:last-child {
+		border-bottom: none;
+	}
+	.featured-item h3 {
 		margin-top: 0;
 		font-size: 0.85rem;
 		text-transform: uppercase;
@@ -143,6 +134,7 @@ const { Content: BioContent } = bioEntry
 	}
 	.title-link:hover p {
 		text-decoration: underline;
+		color: var(--accent);
 	}
 	.card p {
 		font-size: 1.25rem;

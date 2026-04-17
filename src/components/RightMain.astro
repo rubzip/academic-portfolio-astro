@@ -1,5 +1,6 @@
 ---
 import Navbar from "./Navbar.astro";
+import Footer from "./Footer.astro";
 ---
 
 <div class="flex-1 min-w-0 bg-background transition-colors duration-300">
@@ -8,6 +9,7 @@ import Navbar from "./Navbar.astro";
         <main class="animate-in fade-in duration-700">
             <slot />
         </main>
+        <Footer />
     </div>
 </div>
 

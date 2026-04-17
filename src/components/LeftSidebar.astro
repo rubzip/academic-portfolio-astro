@@ -1,54 +1,78 @@
 ---
-import { SITE, SOCIALS } from "../config";
-import { SOCIAL_ICONS } from "../constants";
+import { SITE, SOCIALS, SOCIAL_ICONS } from "../config";
 
 const activeSocials = SOCIALS.filter((s) => s.active);
 ---
 
 <aside
-    class="w-[300px] h-screen sticky top-0 bg-sidebar-bg border-r border-border p-12 pt-[215px] flex flex-col justify-between shrink-0 max-md:w-full max-md:h-auto max-md:relative max-md:p-8 max-md:border-r-0 max-md:border-b transition-colors duration-300"
+    class="w-[300px] h-screen sticky top-0 bg-background p-12 pt-24 flex flex-col gap-12 shrink-0 max-md:w-full max-md:h-auto max-md:relative max-md:p-8 transition-colors duration-300"
 >
-    <div class="sidebar-header flex flex-col items-center text-center">
+    <div
+        class="sidebar-header flex flex-col items-center text-center max-md:flex-row max-md:text-left max-md:gap-6 max-md:items-center max-md:w-full"
+    >
         {
             SITE.profileImage && (
-                <div class="mb-10">
+                <div class="mb-10 max-md:mb-0 shrink-0">
                     <img
                         src={`/${SITE.profileImage}`}
                         alt={SITE.author}
-                        class="w-32 h-32 rounded-full object-cover border-4 border-border shadow-md contrast-110 hover:contrast-125 transition-all duration-300"
+                        class="w-32 h-32 max-md:w-20 max-md:h-20 rounded-full object-cover border-0 contrast-110 hover:contrast-125 transition-all duration-300"
                     />
                 </div>
             )
         }
-        <h1
-            class="text-3xl font-extrabold m-0 tracking-tight text-foreground leading-tight"
-        >
-            {SITE.title}
-        </h1>
-        <p class="text-[0.9rem] text-text-muted mt-2 font-medium">
-            {SITE.institution}
-        </p>
-        <p
-            class="text-[1rem] leading-relaxed mt-10 text-foreground opacity-90 font-medium"
-        >
-            {SITE.shortBio}
-        </p>
-    </div>
+        <div class="flex flex-col items-center max-md:items-start">
+            <h1
+                class="text-3xl max-md:text-2xl font-extrabold m-0 tracking-tight text-foreground leading-tight"
+            >
+                {SITE.title}
+            </h1>
+            <p
+                class="text-[0.9rem] text-text-muted mt-2 font-medium flex items-center justify-center max-md:justify-start gap-2"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="opacity-70"
+                    ><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"
+                    ></path><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"
+                    ></path><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"
+                    ></path><path d="M10 6h4"></path><path d="M10 10h4"
+                    ></path><path d="M10 14h4"></path><path d="M10 18h4"
+                    ></path></svg
+                >
+                {SITE.institution}
+            </p>
 
-    <div class="flex flex-col gap-8 max-md:mt-12 items-center">
-        <div class="flex gap-5 flex-wrap items-center justify-center">
-            {
-                activeSocials.map((social) => (
-                    <a
-                        href={social.href}
-                        title={social.linkTitle}
-                        target="_blank"
-                        rel="noreferrer"
-                        class="text-text-muted hover:text-foreground transition-all duration-300 hover:scale-110"
-                        set:html={SOCIAL_ICONS[social.name]}
-                    />
-                ))
-            }
+            <div
+                class="flex gap-5 flex-wrap items-center justify-center max-md:justify-start mt-6"
+            >
+                {
+                    activeSocials.map((social) => (
+                        <a
+                            href={social.href}
+                            title={social.linkTitle}
+                            target="_blank"
+                            rel="noreferrer"
+                            class="text-text-muted hover:text-accent transition-all duration-300 hover:scale-110"
+                            set:html={SOCIAL_ICONS[social.name]}
+                        />
+                    ))
+                }
+            </div>
+
+            <p
+                class="text-[1rem] leading-relaxed mt-10 text-foreground opacity-90 font-medium max-md:hidden"
+            >
+                {SITE.shortBio}
+            </p>
         </div>
     </div>
 </aside>
