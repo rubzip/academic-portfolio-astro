@@ -1,0 +1,165 @@
+---
+import { getCollection, getEntry, render } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+import { SITE } from "../config";
+
+const featuredPub = (await getCollection("publications")).find(
+	(p) => p.data.featured,
+);
+const latestPost = (await getCollection("posts")).sort(
+	(a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+)[0];
+const featuredProject = (await getCollection("projects")).find(
+	(p) => p.data.featured,
+);
+
+// Load bio content
+const bioEntry = await getEntry("bio", "bio");
+const { Content: BioContent } = bioEntry
+	? await render(bioEntry)
+	: { Content: null };
+---
+
+<Layout title="Home">
+	<section class="bio">
+		<div class="prose">
+			{BioContent ? <BioContent /> : <p>Loading bio...</p>}
+		</div>
+	</section>
+
+	<section class="recent-work">
+		<div class="grid">
+			{
+				featuredPub && (
+					<div class="card">
+						<h3>Featured Publication</h3>
+						<a
+							href={`/publications/${featuredPub.id}`}
+							class="title-link"
+						>
+							<p>
+								{featuredPub.data.title} (
+								{featuredPub.data.publicationDate.getFullYear()}
+								)
+							</p>
+						</a>
+						<a href="/publications" class="more">
+							View all publications &rarr;
+						</a>
+					</div>
+				)
+			}
+			{
+				featuredProject && (
+					<div class="card">
+						<h3>Featured Code</h3>
+						<a
+							href={`/projects/${featuredProject.id}`}
+							class="title-link"
+						>
+							<p>{featuredProject.data.title}</p>
+						</a>
+						<a href="/projects" class="more">
+							View more projects &rarr;
+						</a>
+					</div>
+				)
+			}
+			{
+				latestPost && (
+					<div class="card">
+						<h3>Latest Post</h3>
+						<a href={`/blog/${latestPost.id}`} class="title-link">
+							<p>{latestPost.data.title}</p>
+						</a>
+						<a href={`/blog/${latestPost.id}`} class="more">
+							Read more &rarr;
+						</a>
+					</div>
+				)
+			}
+		</div>
+	</section>
+</Layout>
+
+<style>
+	section {
+		margin-top: 4rem;
+	}
+	.prose {
+		line-height: 1.6;
+		font-size: 1.1rem;
+	}
+	.prose :global(h1) {
+		font-size: 2.5rem;
+		font-weight: 800;
+		margin-bottom: 1.5rem;
+	}
+	.prose :global(h2) {
+		font-size: 1.75rem;
+		font-weight: 700;
+		margin-top: 2rem;
+		margin-bottom: 1rem;
+	}
+	.prose :global(p) {
+		margin-bottom: 1rem;
+	}
+	.prose :global(ul) {
+		margin-bottom: 1rem;
+		padding-left: 1.5rem;
+	}
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 2rem;
+	}
+	.card {
+		padding: 1.5rem;
+		border: 1px solid var(--border);
+		border-radius: 8px;
+		background: var(--sidebar-bg);
+		transition:
+			transform 0.2s,
+			box-shadow 0.2s;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
+	.card:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	}
+	.card h3 {
+		margin-top: 0;
+		font-size: 0.85rem;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--text-muted);
+		margin-bottom: 0.5rem;
+	}
+	.title-link {
+		text-decoration: none;
+		color: inherit;
+	}
+	.title-link:hover p {
+		text-decoration: underline;
+	}
+	.card p {
+		font-size: 1.25rem;
+		font-weight: 700;
+		margin: 0;
+		line-height: 1.3;
+	}
+	.more {
+		display: inline-block;
+		margin-top: 1rem;
+		font-size: 0.9rem;
+		font-weight: 600;
+		text-decoration: none;
+		color: inherit;
+		opacity: 0.6;
+	}
+	.more:hover {
+		opacity: 1;
+	}
+</style>

@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-accent: var(--accent);
+    --color-sidebar-bg: var(--sidebar-bg);
+    --color-border: var(--border);
+    --color-text-muted: var(--text-muted);
+}
+
+:root {
+    --accent: #2c3e50;
+    --background: #ffffff;
+    --foreground: #212121;
+    --sidebar-bg: #f9f9f9;
+    --border: #eeeeee;
+    --text-muted: #666666;
+}
+
+html.dark {
+    --accent: #ecf0f1;
+    --background: #111111;
+    --foreground: #e0e0e0;
+    --sidebar-bg: #1a1a1a;
+    --border: #2a2a2a;
+    --text-muted: #888888;
+}
+
+html {
+    font-family: "Inter", system-ui, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global Content Styling for main area */
+main h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+}
+
+main h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+main p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    color: var(--foreground);
+    opacity: 0.95;
+}
+
+main a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+main a:hover {
+    opacity: 0.7;
+}
+
+/* MathML hide fallback */
+.katex-mathml {
+    display: none;
+}

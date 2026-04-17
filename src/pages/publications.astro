@@ -1,0 +1,134 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+const publications = await getCollection("publications");
+const sortedPublications = publications.sort(
+    (a, b) =>
+        b.data.publicationDate.getTime() - a.data.publicationDate.getTime(),
+);
+---
+
+<Layout title="Publications">
+    <header>
+        <h1>Publications</h1>
+        <p class="subtitle">
+            A collection of my research papers and contributions to physics.
+        </p>
+    </header>
+
+    <section class="publications-list">
+        {
+            sortedPublications.map((pub) => (
+                <article class="publication-item">
+                    <div class="date">
+                        {pub.data.publicationDate.toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })}
+                    </div>
+                    <a href={`/publications/${pub.id}`} class="title-link">
+                        <h3>{pub.data.title}</h3>
+                    </a>
+                    <p class="authors">{pub.data.authors.join(", ")}</p>
+                    {pub.data.journal && (
+                        <p class="journal">
+                            <em>{pub.data.journal}</em>
+                        </p>
+                    )}
+                    <p class="description">{pub.data.description || ""}</p>
+                    <div class="links">
+                        {pub.data.doi && (
+                            <a
+                                href={`https://doi.org/${pub.data.doi}`}
+                                target="_blank"
+                            >
+                                DOI
+                            </a>
+                        )}
+                        {pub.data.url && (
+                            <a href={pub.data.url} target="_blank">
+                                Link
+                            </a>
+                        )}
+                        {pub.data.pdf && (
+                            <a href={pub.data.pdf} target="_blank">
+                                PDF
+                            </a>
+                        )}
+                    </div>
+                </article>
+            ))
+        }
+    </section>
+</Layout>
+
+<style>
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin: 0;
+    }
+    .subtitle {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+        margin-bottom: 3rem;
+    }
+    .publications-list {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .publication-item {
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+    }
+    .publication-item:last-child {
+        border-bottom: none;
+    }
+    .date {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 0.5rem;
+    }
+    .title-link {
+        text-decoration: none;
+        color: inherit;
+    }
+    .title-link:hover h3 {
+        text-decoration: underline;
+    }
+    h3 {
+        font-size: 1.5rem;
+        margin: 0.5rem 0;
+        line-height: 1.3;
+    }
+    .authors {
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+    }
+    .journal {
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+    }
+    .description {
+        margin-top: 1rem;
+        line-height: 1.6;
+    }
+    .links {
+        margin-top: 1.5rem;
+        display: flex;
+        gap: 1.5rem;
+    }
+    .links a {
+        text-decoration: underline;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--foreground);
+    }
+    .links a:hover {
+        opacity: 0.7;
+    }
+</style>

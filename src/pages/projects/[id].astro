@@ -1,0 +1,99 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("projects");
+    return projects.map((project) => ({
+        params: { id: project.id },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout title={project.data.title}>
+    <article class="project-content">
+        <header>
+            <h1>{project.data.title}</h1>
+            <p class="description">{project.data.description}</p>
+            {
+                project.data.tech && (
+                    <div class="tech-stack">
+                        {project.data.tech.map((t) => (
+                            <span class="tech-tag">{t}</span>
+                        ))}
+                    </div>
+                )
+            }
+        </header>
+
+        <div class="links">
+            {
+                project.data.github && (
+                    <a href={project.data.github} target="_blank">
+                        GitHub Repository &rarr;
+                    </a>
+                )
+            }
+        </div>
+
+        <hr />
+
+        <div class="prose">
+            <Content />
+        </div>
+    </article>
+</Layout>
+
+<style>
+    .project-content {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    header {
+        margin-bottom: 2rem;
+    }
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin: 0;
+    }
+    .description {
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        color: var(--text-muted);
+    }
+    .tech-stack {
+        margin-top: 1.5rem;
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+    .tech-tag {
+        font-size: 0.85rem;
+        background: var(--sidebar-bg);
+        border: 1px solid var(--border);
+        padding: 0.25rem 0.75rem;
+        border-radius: 4px;
+    }
+    .links {
+        margin-bottom: 2rem;
+    }
+    .links a {
+        font-weight: 600;
+        text-decoration: none;
+        border-bottom: 1px solid currentColor;
+    }
+    hr {
+        border: 0;
+        border-top: 1px solid var(--border);
+        margin: 2rem 0;
+    }
+    .prose {
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+</style>

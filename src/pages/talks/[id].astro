@@ -1,0 +1,106 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const talks = await getCollection("talks");
+    return talks.map((talk) => ({
+        params: { id: talk.id },
+        props: { talk },
+    }));
+}
+
+const { talk } = Astro.props;
+const { Content } = await render(talk);
+---
+
+<Layout title={talk.data.title}>
+    <article class="talk-content">
+        <header>
+            <div class="meta">
+                <time datetime={talk.data.date.toISOString()}>
+                    {
+                        talk.data.date.toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })
+                    }
+                </time>
+                <span class="location">at {talk.data.location}</span>
+            </div>
+            <h1>{talk.data.title}</h1>
+            <p class="event">
+                Presented at: <strong>{talk.data.event}</strong>
+            </p>
+        </header>
+
+        <div class="links">
+            {
+                talk.data.slides && (
+                    <a href={talk.data.slides} target="_blank">
+                        Slides
+                    </a>
+                )
+            }
+            {
+                talk.data.video && (
+                    <a href={talk.data.video} target="_blank">
+                        Video
+                    </a>
+                )
+            }
+        </div>
+
+        <hr />
+
+        <div class="prose">
+            <Content />
+        </div>
+    </article>
+</Layout>
+
+<style>
+    .talk-content {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    header {
+        margin-bottom: 2rem;
+    }
+    .meta {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin: 0;
+        line-height: 1.2;
+    }
+    .event {
+        margin-top: 1rem;
+        font-size: 1.1rem;
+    }
+    .links {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    .links a {
+        text-decoration: underline;
+        font-weight: 600;
+    }
+    hr {
+        border: 0;
+        border-top: 1px solid var(--border);
+        margin: 2rem 0;
+    }
+    .prose {
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+</style>

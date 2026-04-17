@@ -4,6 +4,7 @@
 You are building an academic portfolio template using **Astro**, **TypeScript**, and **Tailwind CSS**. 
 The aesthetic must strictly mimic the minimalist, highly accessible style of "AstroPaper", but adapted into a 2-column layout. 
 **Mock Data Persona:** Albert Einstein. All placeholder text, articles, configurations, and the CV must use Einstein's life, his *Annus Mirabilis* papers, and his time at the Bern patent office.
+IT IS IMPORTANT THAT THE USER CAN EASILY CHANGE THE PAGE WITHOUT MODIFYING ANY ASTRO CODE. 
 
 ## 2. Technology Stack & Constraints
 * **Framework:** Astro (latest) with TypeScript.

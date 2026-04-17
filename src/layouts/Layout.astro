@@ -1,0 +1,75 @@
+---
+import { SITE } from "../config";
+import LeftSidebar from "../components/LeftSidebar.astro";
+import RightMain from "../components/RightMain.astro";
+import "../styles/global.css";
+
+interface Props {
+    title: string;
+    description?: string;
+}
+
+const { title, description = SITE.desc } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content={description} />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+            rel="stylesheet"
+        />
+        <title>{title} | {SITE.title}</title>
+
+        <!-- KaTeX CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+        />
+
+        <!-- Dark Mode Script -->
+        <script is:inline>
+            const theme = (() => {
+                const savedTheme =
+                    typeof localStorage !== "undefined" &&
+                    localStorage.getItem("theme");
+                if (savedTheme) return savedTheme;
+                return window.matchMedia("(prefers-color-scheme: dark)").matches
+                    ? "dark"
+                    : "light";
+            })();
+
+            if (theme === "light") {
+                document.documentElement.classList.remove("dark");
+            } else {
+                document.documentElement.classList.add("dark");
+            }
+            window.localStorage.setItem("theme", theme);
+        </script>
+    </head>
+    <body class="bg-background text-foreground transition-colors duration-300">
+        <div
+            class="max-w-[1400px] mx-auto flex min-h-screen max-md:flex-col relative"
+        >
+            <LeftSidebar />
+            <RightMain>
+                <slot />
+            </RightMain>
+        </div>
+
+        <script>
+            const toggle = document.getElementById("theme-toggle");
+            toggle?.addEventListener("click", () => {
+                const isDark =
+                    document.documentElement.classList.toggle("dark");
+                localStorage.setItem("theme", isDark ? "dark" : "light");
+            });
+        </script>
+    </body>
+</html>

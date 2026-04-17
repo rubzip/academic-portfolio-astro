@@ -1,0 +1,98 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../layouts/Layout.astro";
+
+const posts = await getCollection("posts");
+const sortedPosts = posts.sort(
+    (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+---
+
+<Layout title="Blog">
+    <header>
+        <h1>Blog</h1>
+        <p class="subtitle">Blog entries.</p>
+    </header>
+
+    <section class="posts-list">
+        {
+            sortedPosts.map((post) => (
+                <article class="post-item">
+                    <div class="date">
+                        {post.data.pubDate.toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })}
+                    </div>
+                    <a href={`/blog/${post.id}`} class="post-link">
+                        <h3>{post.data.title}</h3>
+                    </a>
+                    <p class="description">{post.data.description}</p>
+                    <div class="tags">
+                        {post.data.tags.map((tag) => (
+                            <span class="tag">#{tag}</span>
+                        ))}
+                    </div>
+                </article>
+            ))
+        }
+    </section>
+</Layout>
+
+<style>
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin: 0;
+    }
+    .subtitle {
+        font-size: 1.1rem;
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+        margin-bottom: 3rem;
+    }
+    .posts-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+    }
+    .post-item {
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--border);
+    }
+    .post-item:last-child {
+        border-bottom: none;
+    }
+    .date {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 0.5rem;
+    }
+    .post-link {
+        text-decoration: none;
+        color: inherit;
+    }
+    .post-link:hover h3 {
+        opacity: 0.7;
+        text-decoration: underline;
+    }
+    h3 {
+        font-size: 1.5rem;
+        margin: 0.5rem 0;
+        line-height: 1.3;
+    }
+    .description {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+    .tags {
+        display: flex;
+        gap: 0.75rem;
+    }
+    .tag {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+</style>

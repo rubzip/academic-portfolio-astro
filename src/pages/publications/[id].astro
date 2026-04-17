@@ -1,0 +1,123 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+    const publications = await getCollection("publications");
+    return publications.map((pub) => ({
+        params: { id: pub.id },
+        props: { pub },
+    }));
+}
+
+const { pub } = Astro.props;
+const { Content } = await render(pub);
+---
+
+<Layout title={pub.data.title}>
+    <article class="pub-content">
+        <header>
+            <div class="meta">
+                <time datetime={pub.data.publicationDate.toISOString()}>
+                    {
+                        pub.data.publicationDate.toLocaleDateString("en-US", {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })
+                    }
+                </time>
+            </div>
+            <h1>{pub.data.title}</h1>
+            <p class="authors">{pub.data.authors.join(", ")}</p>
+            {
+                pub.data.journal && (
+                    <p class="journal">
+                        <em>{pub.data.journal}</em>
+                    </p>
+                )
+            }
+        </header>
+
+        <div class="links">
+            {
+                pub.data.doi && (
+                    <a href={`https://doi.org/${pub.data.doi}`} target="_blank">
+                        DOI
+                    </a>
+                )
+            }
+            {
+                pub.data.url && (
+                    <a href={pub.data.url} target="_blank">
+                        Link
+                    </a>
+                )
+            }
+            {
+                pub.data.pdf && (
+                    <a href={pub.data.pdf} target="_blank">
+                        PDF
+                    </a>
+                )
+            }
+        </div>
+
+        <hr />
+
+        <div class="prose">
+            <Content />
+        </div>
+    </article>
+</Layout>
+
+<style>
+    .pub-content {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    header {
+        margin-bottom: 2rem;
+    }
+    .meta {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+    }
+    h1 {
+        font-size: 2.5rem;
+        font-weight: 800;
+        margin: 0;
+        line-height: 1.1;
+    }
+    .authors {
+        font-size: 1.2rem;
+        font-weight: 500;
+        margin-top: 1rem;
+    }
+    .journal {
+        color: var(--text-muted);
+        margin-top: 0.5rem;
+    }
+    .links {
+        display: flex;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    .links a {
+        text-decoration: underline;
+        font-weight: 600;
+    }
+    hr {
+        border: 0;
+        border-top: 1px solid var(--border);
+        margin: 2rem 0;
+    }
+    .prose {
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+    .prose :global(p) {
+        margin-bottom: 1.5rem;
+    }
+</style>
