@@ -82,6 +82,28 @@ main a:hover {
     opacity: 1;
 }
 
+/* Unified Badge Styling */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.75rem;
+    background-color: var(--border);
+    color: var(--foreground);
+    border-radius: 9999px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1;
+    transition: all 0.2s;
+    text-decoration: none !important;
+    border: 1px solid transparent;
+}
+
+.badge:hover {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
 /* MathML hide fallback */
 .katex-mathml {
     display: none;

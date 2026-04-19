@@ -22,15 +22,7 @@ const sortedPublications = publications.sort(
             sortedPublications.map((pub) => (
                 <article class="publication-item">
                     <div class="publication-content">
-                        <a
-                            href={
-                                pub.data.url ||
-                                pub.data.pdf ||
-                                `https://doi.org/${pub.data.doi}`
-                            }
-                            target="_blank"
-                            class="post-link"
-                        >
+                        <a href={`/publications/${pub.id}`} class="post-link">
                             <h3>{pub.data.title}</h3>
                         </a>
                         <div class="post-meta">

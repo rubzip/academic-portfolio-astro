@@ -34,12 +34,7 @@ const { Content: BioContent } = bioEntry
 					<div class="featured-item">
 						<div class="item-content">
 							<a
-								href={
-									featuredPub.data.url ||
-									featuredPub.data.pdf ||
-									`https://doi.org/${featuredPub.data.doi}`
-								}
-								target="_blank"
+								href={`/publications/${featuredPub.id}`}
 								class="post-link"
 							>
 								<h3>
@@ -63,8 +58,7 @@ const { Content: BioContent } = bioEntry
 					<div class="featured-item">
 						<div class="item-content">
 							<a
-								href={featuredProject.data.github}
-								target="_blank"
+								href={`/projects/${featuredProject.id}`}
 								class="post-link"
 							>
 								<h3>{featuredProject.data.title}</h3>

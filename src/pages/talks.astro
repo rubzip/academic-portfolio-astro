@@ -21,11 +21,7 @@ const sortedTalks = talks.sort(
             sortedTalks.map((talk) => (
                 <article class="talk-item">
                     <div class="talk-content">
-                        <a
-                            href={talk.data.slides || talk.data.video}
-                            target="_blank"
-                            class="post-link"
-                        >
+                        <a href={`/talks/${talk.id}`} class="post-link">
                             <h3>{talk.data.title}</h3>
                         </a>
                         <div class="post-meta">

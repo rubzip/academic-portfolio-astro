@@ -58,8 +58,8 @@ export const NAV_LINKS = [
     { href: "/publications", label: "Publications" },
     { href: "/talks", label: "Talks" },
     { href: "/projects", label: "Code" },
-    { href: "/cv", label: "CV" },
     { href: "/blog", label: "Blog" },
+    { href: "/cv", label: "CV" },
 ];
 
 export const SOCIAL_ICONS: Record<string, string> = {

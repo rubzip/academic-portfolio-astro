@@ -15,6 +15,9 @@ const { Content } = await render(talk);
 ---
 
 <Layout title={talk.data.title}>
+    <div class="back-link">
+        <a href="/talks">&larr; Back to Talks</a>
+    </div>
     <article class="talk-content">
         <h1>{talk.data.title}</h1>
         <div class="meta">
@@ -62,7 +65,21 @@ const { Content } = await render(talk);
     .talk-content {
         max-width: 800px;
         margin: 0 auto;
-        padding-top: 2rem;
+        padding-top: 1rem;
+    }
+    .back-link {
+        max-width: 800px;
+        margin: 2rem auto 1rem;
+    }
+    .back-link a {
+        text-decoration: none;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: color 0.2s;
+    }
+    .back-link a:hover {
+        color: var(--accent);
     }
     header {
         margin-bottom: 3rem;
