@@ -22,16 +22,20 @@ Edit `src/config.ts` to change the site title, description, and social links.
 Push your changes to GitHub and deploy to Netlify, Vercel, or any other hosting provider.
 
 ## ✅ Project Status & Progress
-
-- [x] **Core Refactor**: Implemented "Extreme Modular Architecture".
-- [x] **Unified Schema**: Standardized frontmatter across all collections.
-- [x] **Tag System**: Unified hashtag-style taxonomy.
-- [x] **Performance Script**: Integrated Lighthouse auditing CLI.
-- [x] **Aesthetics**: Modern tech-editorial UI with dark mode.
-- [ ] Add BibTeX support
-- [ ] Add examples with images
-- [ ] Improve documentation
-- [ ] Configure .ts based theme switching
+ - [ ] Refactor code
+ - [ ] Add bibtex support
+ - [ ] Add tagg system.
+ - [ ] Add RSS button.
+ - [ ] Script for checking lighthouse score
+ - [ ] Change styles, make content more readable and compact
+ - [ ] Evaluate github pages deployment (optionally netlify, vercel)
+ - [ ] Add examples with images
+ - [ ] Add more examples, with different configurations
+ - [ ] Improve documentation
+ - [ ] Evaluate different screen sizes
+ - [ ] No CSS / tailwind code theme configuration. Choosing it as a .ts config file, between a group of them
+ - [ ] Active or disable sections and their respective subpages
+ - [ ] Make look better repo
 
 ## 🚀 Performance & SEO
 
