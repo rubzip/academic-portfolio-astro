@@ -1,12 +1,12 @@
 ---
 import { getCollection } from "astro:content";
 import BaseListing from "../../layouts/BaseListing.astro";
-import { SITE } from "../../config";
+import { SITE, PAGES } from "../../config";
 
-export async function getStaticPaths({ paginate }) {
+export async function getStaticPaths({ paginate }: any) {
     const posts = await getCollection("posts");
     const sortedPosts = posts.sort(
-        (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+        (a: any, b: any) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
     );
 
     return paginate(sortedPosts, { pageSize: SITE.postPerPage });
@@ -17,7 +17,7 @@ const { page } = Astro.props;
 
 <BaseListing
     collection="posts"
-    title="Blog"
-    subtitle="Insights and updates on theoretical physics."
+    title={PAGES.blog.title}
+    subtitle={PAGES.blog.subtitle}
     page={page}
 />

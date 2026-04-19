@@ -1,4 +1,3 @@
-# About Me
 
 I am a theoretical physicist whose work during the *Annus Mirabilis* of 1905 has fundamentally reshaped our understanding of the universe. My career has been dedicated to bridging the gaps between classical mechanics and the then-emerging fields of quantum theory and relativity.
 

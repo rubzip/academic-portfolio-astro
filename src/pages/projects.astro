@@ -1,9 +1,10 @@
 ---
 import BaseListing from "../layouts/BaseListing.astro";
+import { PAGES } from "../config";
 ---
 
 <BaseListing
-    title="Code & Projects"
-    subtitle="A selection of technical projects and software experiments."
+    title={PAGES.projects.title}
+    subtitle={PAGES.projects.subtitle}
     collection="projects"
 />

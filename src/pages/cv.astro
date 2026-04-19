@@ -1,6 +1,7 @@
 ---
 import { getEntry, render } from "astro:content";
 import Layout from "../layouts/Layout.astro";
+import { PAGES } from "../config";
 
 const cvEntry = await getEntry("cv", "cv");
 if (!cvEntry) {
@@ -13,10 +14,10 @@ const { Content } = await render(cvEntry);
 const { name, title, experience = [], education = [] } = cvEntry.data;
 ---
 
-<Layout title="CV">
+<Layout title={PAGES.cv.title}>
     <header class="page-header">
-        <h1 class="page-title">Curriculum Vitae</h1>
-        <p class="page-subtitle">{name} — {title}</p>
+        <h1 class="page-title">{PAGES.cv.title}</h1>
+        <p class="page-subtitle">{PAGES.cv.subtitle}</p>
     </header>
 
     <div class="container-narrow">
