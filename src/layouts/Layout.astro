@@ -103,54 +103,39 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
 
         <ClientRouter />
 
-        <!-- Dark Mode Script -->
         <script is:inline>
-            const setTheme = () => {
-                const savedTheme =
-                    typeof localStorage !== "undefined" &&
-                    localStorage.getItem("theme");
-                const theme =
-                    savedTheme ||
-                    (window.matchMedia("(prefers-color-scheme: dark)").matches
-                        ? "dark"
-                        : "light");
+            function setTheme() {
+                const theme = (() => {
+                    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+                        return localStorage.getItem("theme");
+                    }
+                    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                        return "dark";
+                    }
+                    return "light";
+                })();
 
                 document.documentElement.setAttribute("data-theme", theme);
-            };
+                localStorage.setItem("theme", theme);
+            }
 
             setTheme();
             document.addEventListener("astro:after-swap", setTheme);
-        </script>
-    </head>
-    <body class="bg-background text-foreground transition-colors duration-300">
-        <div
-            class="max-w-[1400px] mx-auto flex min-h-screen max-md:flex-col relative"
-        >
-            <LeftSidebar />
-            <RightMain>
-                <slot />
-            </RightMain>
-        </div>
 
-        <script>
-            function setupThemeToggle() {
+            function initToggle() {
                 const toggle = document.getElementById("theme-toggle");
-                toggle?.addEventListener("click", () => {
-                    const currentTheme =
-                        document.documentElement.getAttribute("data-theme") ||
-                        "light";
-                    const newTheme = currentTheme === "dark" ? "light" : "dark";
-
-                    document.documentElement.setAttribute(
-                        "data-theme",
-                        newTheme,
-                    );
-                    localStorage.setItem("theme", newTheme);
-                });
+                if (toggle) {
+                    toggle.addEventListener("click", () => {
+                        const current = document.documentElement.getAttribute("data-theme");
+                        const next = current === "dark" ? "light" : "dark";
+                        document.documentElement.setAttribute("data-theme", next);
+                        localStorage.setItem("theme", next);
+                    });
+                }
             }
 
-            setupThemeToggle();
-            document.addEventListener("astro:page-load", setupThemeToggle);
+            initToggle();
+            document.addEventListener("astro:after-swap", initToggle);
         </script>
     </body>
 </html>
