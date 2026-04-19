@@ -54,38 +54,44 @@ export const SOCIALS = [
 ];
 
 export const NAV_LINKS = [
-    { href: "/", label: "Home" },
-    { href: "/publications", label: "Publications" },
-    { href: "/talks", label: "Talks" },
-    { href: "/projects", label: "Code" },
-    { href: "/blog", label: "Blog" },
-    { href: "/cv", label: "CV" },
+    { href: "/", label: "Home", active: true },
+    { href: "/publications", label: "Publications", active: true },
+    { href: "/talks", label: "Talks", active: true },
+    { href: "/projects", label: "Code", active: true },
+    { href: "/blog", label: "Blog", active: true },
+    { href: "/cv", label: "CV", active: true },
 ];
 
 export const PAGES = {
     home: {
         title: "About Me",
         subtitle: "",
+        active: true,
     },
     publications: {
         title: "Publications",
         subtitle: "A collection of research papers and scientific contributions.",
+        active: true,
     },
     talks: {
         title: "Talks & Presentations",
         subtitle: "Invited talks, conference presentations, and seminars.",
+        active: true,
     },
     projects: {
         title: "Research & Code",
         subtitle: "Open source software and technical projects.",
+        active: true,
     },
     blog: {
         title: "Blog",
         subtitle: "Thoughts on physics, mathematics, and philosophy.",
+        active: true,
     },
     cv: {
         title: "Curriculum Vitae",
         subtitle: "",
+        active: true,
     },
 };
 

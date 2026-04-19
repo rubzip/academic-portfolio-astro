@@ -3,7 +3,12 @@ import { getCollection } from "astro:content";
 import BaseListing from "../../layouts/BaseListing.astro";
 import { SITE, PAGES } from "../../config";
 
+if (PAGES.blog.active === false) {
+    return Astro.redirect("/404");
+}
+
 export async function getStaticPaths({ paginate }: any) {
+    if (PAGES.blog.active === false) return [];
     const posts = await getCollection("posts");
     const sortedPosts = posts.sort(
         (a: any, b: any) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),

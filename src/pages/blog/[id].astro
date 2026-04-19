@@ -2,8 +2,14 @@
 import { getCollection } from "astro:content";
 import BaseDetail from "../../layouts/BaseDetail.astro";
 import { getReadingTime } from "../../utils/readingTime";
+import { PAGES } from "../../config";
+
+if (PAGES.blog.active === false) {
+    return Astro.redirect("/404");
+}
 
 export async function getStaticPaths() {
+    if (PAGES.blog.active === false) return [];
     const posts = await getCollection("posts");
     const sortedPosts = posts.sort(
         (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),

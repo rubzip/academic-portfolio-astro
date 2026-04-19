@@ -1,5 +1,5 @@
 ---
-import { NAV_LINKS } from "../config";
+import { NAV_LINKS, PAGES } from "../config";
 
 const currentPath = Astro.url.pathname;
 ---
@@ -9,7 +9,14 @@ const currentPath = Astro.url.pathname;
 >
     <ul class="flex gap-x-8 gap-y-4 list-none p-0 flex-wrap items-center">
         {
-            NAV_LINKS.map((link) => (
+            NAV_LINKS.filter((link) => {
+                const isHome = link.href === "/";
+                const pageKey = isHome
+                    ? "home"
+                    : link.href.split("/").filter(Boolean)[0];
+                const pageConfig = (PAGES as any)[pageKey];
+                return link.active !== false && pageConfig?.active !== false;
+            }).map((link) => (
                 <li>
                     <a
                         href={link.href}

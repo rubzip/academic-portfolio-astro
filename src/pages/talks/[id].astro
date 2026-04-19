@@ -1,10 +1,16 @@
 ---
 import { getCollection } from "astro:content";
 import BaseDetail from "../../layouts/BaseDetail.astro";
+import { PAGES } from "../../config";
+
+if (PAGES.talks.active === false) {
+    return Astro.redirect("/404");
+}
 
 export async function getStaticPaths() {
+    if (PAGES.talks.active === false) return [];
     const talks = await getCollection("talks");
-    return talks.map((talk) => ({
+    return talks.map((talk: any) => ({
         params: { id: talk.id },
         props: { talk },
     }));

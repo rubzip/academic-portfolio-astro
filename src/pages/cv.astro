@@ -3,6 +3,10 @@ import { getEntry, render } from "astro:content";
 import Layout from "../layouts/Layout.astro";
 import { PAGES } from "../config";
 
+if (PAGES.cv.active === false) {
+    return Astro.redirect("/404");
+}
+
 const cvEntry = await getEntry("cv", "cv");
 if (!cvEntry) {
     throw new Error(
