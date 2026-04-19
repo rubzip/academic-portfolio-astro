@@ -49,6 +49,10 @@ const posts = defineCollection({
 
 const bio = defineCollection({
     loader: glob({ pattern: "bio.md", base: "./src/content" }),
+    schema: z.object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+    }),
 });
 
 const projects = defineCollection({
