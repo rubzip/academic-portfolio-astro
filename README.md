@@ -9,6 +9,14 @@ Strongly inspired by [academicpages](https://github.com/academicpages/academicpa
 
 > **[Live Demo](https://astro-academics-page.vercel.app/)**
 
+## Features
+GitHub Pages deploy
+Easy markdown-based content creation.
+Light/dark themes
+RSS
+Multiple Themes
+
+
 ## Customization Guide
 
 ### 1. Update Site Configuration
