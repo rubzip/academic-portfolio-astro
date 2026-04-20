@@ -38,14 +38,7 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] Active or disable sections and their respective subpages
  - [ ] Make look better repo
 
-## 🚀 Performance & SEO
+## LightHouse Score
 
-
-### Audit it yourself
-To run a full Lighthouse audit across all pages:
-```bash
-npm run build
-npm run preview
-npm run lighthouse
-```
-This will build the project and launch [Unlighthouse](https://unlighthouse.dev/) for a deep-scan.
+## Agentic AI Warning
+This project was mainly vibe coded by strong human supervision. Take it in count in case you dont like LLMs.
