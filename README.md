@@ -38,6 +38,7 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] Active or disable sections and their respective subpages
  - [ ] Make look better repo
  - [ ] Analytics implementation
+ - [ ] **VISUAL BUG:** When some navbar buttons are clicked, sidebar moves
  
 
 ## LightHouse Score
