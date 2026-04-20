@@ -5,7 +5,7 @@
 
 A fast, minimalist, and highly customizable Astro template designed specifically for researchers, professors, PhD students, and academics. 
 
-Strongly inspired by [academicpages](https://github.com/academicpages/academicpages.github.io) and [Astro Paper](https://github.com/satnaing/astro-paper), this template prioritizes content readability, and easy configuration.
+Strongly inspired by [Academic Pages](https://github.com/academicpages/academicpages.github.io) and [AstroPaper](https://github.com/satnaing/astro-paper), this template prioritizes content readability, and easy configuration.
 
 > **[Live Demo](https://astro-academics-page.vercel.app/)**
 
