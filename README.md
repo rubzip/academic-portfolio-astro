@@ -41,6 +41,8 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [ ] Analytics implementation
  - [ ] **VISUAL BUG:** When some navbar buttons are clicked, sidebar moves
  - [ ] Add option for null title or null subtitle (and correctly moving code)
+ - [ ] Download icons
+ - [ ] Clean and restructure `config.ts`
 
  
 
