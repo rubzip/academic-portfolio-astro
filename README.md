@@ -53,7 +53,7 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [ ] Make look better repo.
  - [x] Change GH repo name
  - [ ] Analytics implementation
- - [ ] **VISUAL BUG:** When some navbar buttons are clicked, sidebar moves
+ - [x] **VISUAL BUG:** When some navbar buttons are clicked, sidebar moves
  - [ ] Add option for null title or null subtitle (and correctly moving page upper)
  - [ ] Download icons 
  - [ ] Clean and restructure `config.ts`

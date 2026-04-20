@@ -66,6 +66,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
                 --text-muted: var(--lightMuted);
                 --border: var(--lightBorder);
                 --surface: var(--lightSurface);
+                scrollbar-gutter: stable;
             }
 
             [data-theme="dark"] {
@@ -106,10 +107,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
         <script is:inline>
             function setTheme() {
                 const theme = (() => {
-                    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+                    if (
+                        typeof localStorage !== "undefined" &&
+                        localStorage.getItem("theme")
+                    ) {
                         return localStorage.getItem("theme");
                     }
-                    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+                    if (
+                        window.matchMedia("(prefers-color-scheme: dark)")
+                            .matches
+                    ) {
                         return "dark";
                     }
                     return "light";
@@ -126,9 +133,13 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
                 const toggle = document.getElementById("theme-toggle");
                 if (toggle) {
                     toggle.addEventListener("click", () => {
-                        const current = document.documentElement.getAttribute("data-theme");
+                        const current =
+                            document.documentElement.getAttribute("data-theme");
                         const next = current === "dark" ? "light" : "dark";
-                        document.documentElement.setAttribute("data-theme", next);
+                        document.documentElement.setAttribute(
+                            "data-theme",
+                            next,
+                        );
                         localStorage.setItem("theme", next);
                     });
                 }
@@ -138,7 +149,9 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || SITE.website);
             document.addEventListener("astro:after-swap", initToggle);
         </script>
     </head>
-    <body class="bg-background text-foreground transition-colors duration-300 min-h-screen">
+    <body
+        class="bg-background text-foreground transition-colors duration-300 min-h-screen"
+    >
         <div class="flex max-md:flex-col mx-auto max-w-6xl w-full">
             <LeftSidebar />
             <RightMain>
