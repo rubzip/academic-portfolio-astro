@@ -1,7 +1,13 @@
-# Astro Academic Portfolio
-An Astro template for your academic portfolio. This template is strongly inspired by [academic pages](https://github.com/academicpages/academicpages.github.io) and [astro paper](https://github.com/satnaing/astro-paper).
+# 🎓 Academic Portfolio Astro
 
-Designed to be easy to use and customize, with a focus on content and presentation.
+[![Built with Astro](https://img.shields.io/badge/Built_with-Astro-ff5d01?logo=astro&logoColor=white&style=flat-square)](https://astro.build/)
+[![Styled with Tailwind](https://img.shields.io/badge/Styled_with-Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white&style=flat-square)](https://tailwindcss.com/)
+
+A fast, minimalist, and highly customizable Astro template designed specifically for researchers, professors, PhD students, and academics. 
+
+Strongly inspired by [academicpages](https://github.com/academicpages/academicpages.github.io) and [Astro Paper](https://github.com/satnaing/astro-paper), this template prioritizes content readability, and easy configuration.
+
+> **[Live Demo](https://astro-academics-page.vercel.app/)**
 
 ## Customization Guide
 
