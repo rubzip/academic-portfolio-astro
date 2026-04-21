@@ -25,7 +25,7 @@ const currentPath = Astro.url.pathname;
                             (link.href !== "/" &&
                                 currentPath.startsWith(link.href))
                                 ? "text-accent"
-                                : "text-text-muted"
+                                : "opacity-75"
                         }`}
                     >
                         {link.label}
