@@ -1,0 +1,115 @@
+---
+import { LIGHT_THEMES, DARK_THEMES } from "../../themes";
+import "../../styles/global.css";
+
+if (import.meta.env.PROD) {
+    return new Response(null, {
+        status: 404,
+        statusText: "Not found",
+    });
+}
+---
+
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Theme Visualizer - Embed Previews</title>
+        <style>
+            .iframe-container {
+                position: relative;
+                width: 100%;
+                padding-top: 56.25%; /* 16:9 Aspect Ratio */
+                overflow: hidden;
+                border-radius: 0.5rem;
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+                border: 2px solid #334155;
+                background: #0f172a;
+            }
+            .iframe-container iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 200%;
+                height: 200%;
+                transform: scale(0.5);
+                transform-origin: 0 0;
+            }
+        </style>
+    </head>
+    <body class="bg-slate-900 text-white font-sans p-10 min-h-screen">
+        <header
+            class="mb-10 flex flex-col gap-2 border-b border-slate-700 pb-5"
+        >
+            <h1 class="text-3xl font-bold text-sky-400">Theme Visualizer</h1>
+            <p class="text-slate-400">
+                Live preview of <code>index.astro</code> in DEV mode.
+            </p>
+        </header>
+
+        <div class="mb-8">
+            <h2 class="text-2xl font-bold mb-6 text-slate-200">Light Themes</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {
+                    Object.entries(LIGHT_THEMES).map(([themeName, colors]) => (
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-lg font-bold text-slate-300 capitalize">
+                                {themeName}
+                            </h3>
+                            <div class="iframe-container">
+                                <iframe
+                                    src={`/?force_mode=light`}
+                                    title={`${themeName} Light Preview`}
+                                    loading="lazy"
+                                    onload={`
+                                const doc = this.contentDocument.documentElement;
+                                doc.setAttribute('data-theme', 'light');
+                                doc.style.setProperty('--background', '${colors.background}');
+                                doc.style.setProperty('--foreground', '${colors.foreground}');
+                                doc.style.setProperty('--accent', '${colors.accent}');
+                                doc.style.setProperty('--text-muted', '${colors.muted}');
+                                doc.style.setProperty('--border', '${colors.border}');
+                                doc.style.setProperty('--surface', '${colors.surface}');
+                            `}
+                                />
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="mb-8 mt-16">
+            <h2 class="text-2xl font-bold mb-6 text-slate-200">Dark Themes</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {
+                    Object.entries(DARK_THEMES).map(([themeName, colors]) => (
+                        <div class="flex flex-col gap-2">
+                            <h3 class="text-lg font-bold text-slate-300 capitalize">
+                                {themeName}
+                            </h3>
+                            <div class="iframe-container border-slate-700">
+                                <iframe
+                                    src={`/?force_mode=dark`}
+                                    title={`${themeName} Dark Preview`}
+                                    loading="lazy"
+                                    onload={`
+                                const doc = this.contentDocument.documentElement;
+                                doc.setAttribute('data-theme', 'dark');
+                                doc.style.setProperty('--background', '${colors.background}');
+                                doc.style.setProperty('--foreground', '${colors.foreground}');
+                                doc.style.setProperty('--accent', '${colors.accent}');
+                                doc.style.setProperty('--text-muted', '${colors.muted}');
+                                doc.style.setProperty('--border', '${colors.border}');
+                                doc.style.setProperty('--surface', '${colors.surface}');
+                            `}
+                                />
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </body>
+</html>
