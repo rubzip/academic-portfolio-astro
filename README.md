@@ -58,7 +58,7 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [ ] Download icons 
  - [ ] Clean and restructure `config.ts`
  - [ ] Add a post for explaining how to set repository
-
+ - [ ] Check `src/utils/themeVisualization.html` for theme preview
  
 
 ## LightHouse Score
