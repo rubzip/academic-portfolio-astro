@@ -40,7 +40,7 @@ const readingTime = `${getReadingTime(post.body || "")} min read`;
                     href={`/blog/${prevPost.id}`}
                     class="nav-prev flex flex-col group max-w-[45%] no-underline"
                 >
-                    <span class="nav-label text-[0.8rem] uppercase tracking-wider text-text-muted font-bold mb-2">
+                    <span class="nav-label text-[0.8rem] uppercase tracking-wider opacity-75 font-bold mb-2">
                         &larr; Previous Post
                     </span>
                     <span class="nav-title text-lg font-semibold text-foreground group-hover:text-accent transition-colors duration-200 leading-snug">
@@ -56,7 +56,7 @@ const readingTime = `${getReadingTime(post.body || "")} min read`;
                     href={`/blog/${nextPost.id}`}
                     class="nav-next flex flex-col items-end text-right group max-w-[45%] no-underline"
                 >
-                    <span class="nav-label text-[0.8rem] uppercase tracking-wider text-text-muted font-bold mb-2">
+                    <span class="nav-label text-[0.8rem] uppercase tracking-wider opacity-75 font-bold mb-2">
                         Next Post &rarr;
                     </span>
                     <span class="nav-title text-lg font-semibold text-foreground group-hover:text-accent transition-colors duration-200 leading-snug">
