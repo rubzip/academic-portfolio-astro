@@ -1,51 +1,34 @@
 # AI Agent Instructions: Astro Academic Portfolio
 
 ## 1. Project Overview
-You are building an academic portfolio template using **Astro**, **TypeScript**, and **Tailwind CSS**. 
-The aesthetic must strictly mimic the minimalist, highly accessible style of "AstroPaper", but adapted into a 2-column layout. 
-**Mock Data Persona:** Albert Einstein. All placeholder text, articles, configurations, and the CV must use Einstein's life, his *Annus Mirabilis* papers, and his time at the Bern patent office.
-IT IS IMPORTANT THAT THE USER CAN EASILY CHANGE THE PAGE WITHOUT MODIFYING ANY ASTRO CODE. 
+This is an academic portfolio template built using **Astro**, **TypeScript**, and **Tailwind CSS**.
+The aesthetic mimics the minimalist, accessible style of "AstroPaper", adapted into a 2-column layout.
+The primary design philosophy is to allow users to **easily modify the site's content just by writing `.md` files**, without needing to edit any Astro or frontend code.
 
-## 2. Technology Stack & Constraints
+## 2. Technology Stack & Content Modeling
 * **Framework:** Astro (latest) with TypeScript.
 * **Styling:** Tailwind CSS.
-* **Content:** Astro Content Collections (strictly typed). 
-* **Math Support:** Must configure Astro to support LaTeX in Markdown/MDX using `remark-math` and `rehype-katex` (with KaTeX CSS included).
-* **Data Preference:** Markdown files with YAML frontmatter are the primary data source. The CV must be a structured YAML/JSON file.
-* **Key Features:** ViewTransitions enabled, RSS Feed generation, perfect (100) Lighthouse SEO scores.
+* **Content Source:** Primary data source is Markdown (`.md`/`.mdx`) files with YAML frontmatter, along with structured YAML/JSON data files (e.g., for the CV).
+* **Content Management:** Astro Content Collections.
+* **Features:** Supports LaTeX rendering (via `remark-math` and `rehype-katex`), ViewTransitions, and RSS Feed.
 
-## 3. Layout Architecture
-The layout is a 2-column design, split into two entirely independent components:
+## 3. UI and Software Design Rules (CRITICAL)
 
-* **`LeftSidebar.astro` (Sticky):** * Fixed to the left side of the viewport on desktop.
-  * Contains: Avatar (Einstein), Name, Short Bio, and Social Icons (GitHub, Email, Google Scholar, etc.).
-  * On mobile, this should gracefully collapse into a top header.
+### Unified UI through Components
+* **Common UI:** The application must maintain a consistent and unified User Interface across all pages.
+* **No Specific CSS in Astro Pages:** **Do NOT** add page-specific CSS directly within Astro pages (e.g., avoiding `<style>` tags in `.astro` files if possible).
+* **Global Styles First:** The UI should be defined primarily through global CSS styles (e.g., in `src/styles/global.css`) for base styles, themes, and colors.
+* **Component-Based Styling:** Reusable UI elements should be logically separated into components. Utilize Tailwind CSS utility classes within these components to build the design system.
 
-* **`RightMain.astro` (Scrollable):**
-  * Contains the main navigation menu (Blog, CV, Articles, Talks, Code).
-  * Contains the AstroPaper-style main content area.
-  * Handles the page transitions and routing content.
+### Easy to Modify Template
+* **Markdown-Driven:** The template is strictly designed so that a non-technical user can append or modify content *purely* by dealing with `.md` files.
+* **Content Separation:** Maintain a strict boundary between structural logic (Astro layouts/components) and the content itself. Never hardcode content into components when it should be dynamic.
 
-## 4. Content Modeling (Strict Schemas)
-Define strict TypeScript schemas in `src/content/config.ts`. 
-* **Blog:** Markdown posts (title, date, tags, description). Must test LaTeX rendering in body (e.g., $E=mc^2$).
-* **Articles/Publications:** Markdown files. Frontmatter: `journal`, `year`, `doi`, `pdf_link`. Body: Abstract/summary.
-* **Talks:** Markdown files. Frontmatter: `event_name`, `date`, `location`, `slides_link`.
-* **Code/Projects:** Markdown files. Frontmatter: `repo_url`, `tech_stack`, `stars`.
+### Layout Architecture
+* **Two-Column Design:**
+  * **Left Sidebar (Sticky):** Contains profile identity (avatar, name, bio, social links).
+  * **Right Main (Scrollable):** Contains the main page content, navigation menu, and dynamically routed content.
 
-**The CV Data (`src/data/cv.yml` or `src/content/cv/index.json`):**
-Must be a strongly typed structured file containing arrays of objects for:
-* `education`: [institution, degree, start_year, end_year, description]
-* `experience`: [role, organization, start_year, end_year, description]
-* `awards`: [title, year, organization]
-* `skills`: [category: [list of skills]]
-
-## 5. Development Steps for the Agent
-1. Initialize the Astro project and configure Tailwind + ViewTransitions.
-2. Install and configure `remark-math` and `rehype-katex` in `astro.config.mjs`. Import KaTeX CSS in the base layout.
-3. Setup `config.ts` for Content Collections based on the schemas above.
-4. Build the `LeftSidebar` and `RightMain` layout wrappers.
-5. Populate the `src/content/` and `src/data/` directories with Albert Einstein mock data. Include complex LaTeX equations in the mock blog posts to verify rendering.
-6. Implement the AstroPaper UI components (lists, tags, pagination).
-7. Create a dedicated `cv.astro` page that reads the structured CV data file and maps it into a styled visual timeline.
-8. Implement RSS generation and verify SEO meta tags.
+## 4. Agent Operational Instructions
+* Follow the constraints listed above vigorously.
+* If proposing new structural changes or major design directions that aren't clear, **always ask the user for clarification first.**
