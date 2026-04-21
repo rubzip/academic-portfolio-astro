@@ -62,6 +62,7 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  
 
 ## LightHouse Score
+![Lighthouse Performance](https://lighthouse-metrics.com/api/v1/pages/https-astro-academics-page-vercel-app/performance/badge.svg)
 
 ## Agentic AI Warning
 This project was mainly vibe coded by strong human supervision. Take it in count in case you dont like LLMs.
