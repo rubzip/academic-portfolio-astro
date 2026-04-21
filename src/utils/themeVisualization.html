@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Visualizer - Dev Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .color-card { transition: transform 0.2s; }
+        .color-card:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body class="bg-slate-900 text-white font-sans p-10">
+
+    <header class="mb-10 border-b border-slate-700 pb-5">
+        <h1 class="text-3xl font-bold text-sky-400">Theme Visualizer</h1>
+        <p class="text-slate-400">Herramienta independiente para previsualizar interfaces <code>ThemeColors</code></p>
+    </header>
+
+    <div id="theme-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        </div>
+
+    <script type="module">
+        // 1. Aquí pegas tus temas (o los importas si usas un bundler)
+        const themes = {
+            "Einstein Light": {
+                background: "#ffffff",
+                foreground: "#1a1a1a",
+                accent: "#0ea5e9",
+                muted: "#f1f5f9",
+                border: "#e2e8f0",
+                surface: "#f8fafc",
+            },
+            "Relativity Dark": {
+                background: "#0f172a",
+                foreground: "#f8fafc",
+                accent: "#38bdf8",
+                muted: "#1e293b",
+                border: "#334155",
+                surface: "#1e293b",
+            },
+            "Scientific Paper": {
+                background: "#fdf6e3",
+                foreground: "#586e75",
+                accent: "#b58900",
+                muted: "#eee8d5",
+                border: "#d33682",
+                surface: "#eee8d5",
+            }
+        };
+
+        const grid = document.getElementById('theme-grid');
+
+        // 2. Función para renderizar las interfaces dinámicamente
+        Object.entries(themes).forEach(([name, colors]) => {
+            const container = document.createElement('div');
+            container.className = "color-card rounded-2xl p-1 shadow-2xl";
+            container.style.background = `linear-gradient(135deg, ${colors.accent}, ${colors.border})`;
+
+            container.innerHTML = `
+                <div class="rounded-2xl p-6 h-full flex flex-col" style="background-color: ${colors.background}; color: ${colors.foreground}">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="font-bold text-lg tracking-tight">${name}</h2>
+                        <div class="w-4 h-4 rounded-full" style="background-color: ${colors.accent}"></div>
+                    </div>
+
+                    <div class="space-y-4 flex-grow">
+                        <div class="h-2 w-3/4 rounded opacity-20" style="background-color: ${colors.foreground}"></div>
+                        <div class="h-2 w-full rounded opacity-20" style="background-color: ${colors.foreground}"></div>
+                        
+                        <div class="p-3 rounded-lg border" style="background-color: ${colors.surface}; border-color: ${colors.border}">
+                            <p class="text-xs font-mono uppercase opacity-60">Surface Element</p>
+                            <div class="mt-2 h-1 w-1/2 rounded" style="background-color: ${colors.accent}"></div>
+                        </div>
+
+                        <button class="w-full py-2 rounded-lg text-sm font-bold shadow-lg text-white" 
+                                style="background-color: ${colors.accent}">
+                            Action Button
+                        </button>
+
+                        <div class="text-[10px] p-2 rounded italic text-center" style="background-color: ${colors.muted}">
+                            Muted background text preview
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-4 border-t flex gap-1 justify-center" style="border-color: ${colors.border}">
+                        ${Object.entries(colors).map(([key, val]) => `
+                            <div class="w-6 h-6 rounded-md border border-black/10" 
+                                 style="background-color: ${val}" 
+                                 title="${key}: ${val}">
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            grid.appendChild(container);
+        });
+    </script>
+</body>
+</html>
