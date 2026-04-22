@@ -50,6 +50,8 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] Add option for null title or null subtitle (and correctly moving page upper)
  - [x] Download icons 
  - [x] Clean and restructure `config.ts`
+### Bugs
+ - [ ] Sometimes when you first load page, light/dark toggle doesnt work. You have to refresh or change page for doing it
 ### Aesthetics
  - [ ] Define a new style make content more readable and compact
  - [ ] Implement definitive themes
