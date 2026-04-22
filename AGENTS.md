@@ -1,34 +1,27 @@
-# AI Agent Instructions: Astro Academic Portfolio
+# AGENTS.md
 
-## 1. Project Overview
-This is an academic portfolio template built using **Astro**, **TypeScript**, and **Tailwind CSS**.
-The aesthetic mimics the minimalist, accessible style of "AstroPaper", adapted into a 2-column layout.
-The primary design philosophy is to allow users to **easily modify the site's content just by writing `.md` files**, without needing to edit any Astro or frontend code.
+## Commands
+- `npm run dev` - Start dev server
+- `npm run build` - Production build
+- `npm run preview` - Preview build
+- `npm run lighthouse` - Run Lighthouse audit
 
-## 2. Technology Stack & Content Modeling
-* **Framework:** Astro (latest) with TypeScript.
-* **Styling:** Tailwind CSS.
-* **Content Source:** Primary data source is Markdown (`.md`/`.mdx`) files with YAML frontmatter, along with structured YAML/JSON data files (e.g., for the CV).
-* **Content Management:** Astro Content Collections.
-* **Features:** Supports LaTeX rendering (via `remark-math` and `rehype-katex`), ViewTransitions, and RSS Feed.
+## Requirements
+- Node.js >= 22.12.0
 
-## 3. UI and Software Design Rules (CRITICAL)
+## Architecture
+- **Content location:** `src/content/` - Add `.md` files to subdirectories (posts/, publications/, projects/, talks/, teaching/)
+- **Config:** `src/config/site.ts` - Site metadata, analytics
+- **Config:** `src/config/pages.ts` - Page titles, active/inactive state
+- **Config:** `src/config/navigation.ts` - Navigation links
+- **Styles:** `src/styles/global.css` - Theme colors, base styles
 
-### Unified UI through Components
-* **Common UI:** The application must maintain a consistent and unified User Interface across all pages.
-* **No Specific CSS in Astro Pages:** **Do NOT** add page-specific CSS directly within Astro pages (e.g., avoiding `<style>` tags in `.astro` files if possible).
-* **Global Styles First:** The UI should be defined primarily through global CSS styles (e.g., in `src/styles/global.css`) for base styles, themes, and colors.
-* **Component-Based Styling:** Reusable UI elements should be logically separated into components. Utilize Tailwind CSS utility classes within these components to build the design system.
+## Key Constraints
+- **No `<style>` in `.astro` files** - Use global.css and Tailwind classes in components
+- **Two-column layout:** Left sidebar (sticky profile), Right main (scrollable content)
+- **Markdown-driven:** All content in `.md` files with YAML frontmatter
 
-### Easy to Modify Template
-* **Markdown-Driven:** The template is strictly designed so that a non-technical user can append or modify content *purely* by dealing with `.md` files.
-* **Content Separation:** Maintain a strict boundary between structural logic (Astro layouts/components) and the content itself. Never hardcode content into components when it should be dynamic.
-
-### Layout Architecture
-* **Two-Column Design:**
-  * **Left Sidebar (Sticky):** Contains profile identity (avatar, name, bio, social links).
-  * **Right Main (Scrollable):** Contains the main page content, navigation menu, and dynamically routed content.
-
-## 4. Agent Operational Instructions
-* Follow the constraints listed above vigorously.
-* If proposing new structural changes or major design directions that aren't clear, **always ask the user for clarification first.**
+## Notes
+- Tailwind CSS v4 uses `@tailwindcss/vite` plugin (no tailwind.config.js)
+- LaTeX math rendering enabled via remark-math/rehype-katex
+- No lint/typecheck scripts configured
