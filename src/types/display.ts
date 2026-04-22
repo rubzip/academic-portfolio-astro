@@ -20,7 +20,7 @@ export interface UnifiedItem {
     links: DisplayLink[]; // Action links (PDF, DOI, GitHub, etc.)
     tags: string[];
     featured?: boolean;
-    href: string; // Detail page link
+    href: string;
     backLabel: string;
     backHref: string;
 }

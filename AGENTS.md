@@ -12,8 +12,8 @@
 ## Architecture
 - **Barrel files:** `src/config/index.ts`, `src/types/index.ts`
 - **Content:** `src/content/` - Add `.md` files to subdirectories (posts/, publications/, projects/, talks/, teaching/)
-- **Config:** `src/config/` - site.ts (metadata/analytics), pages.ts (titles/active state), navigation.ts (nav links)
-- **Types:** `src/types/` - content.ts (content interfaces), display.ts (UI types), config.ts (config types)
+- **Config:** `src/config/` - site.ts (SITE, SETTINGS, ANALYTICS), pages.ts (PAGES), navigation.ts (NAV_LINKS), themes.ts
+- **Types:** `src/types/` - content.ts (Bio, CVItem, Blog, Publication, etc.), display.ts (UnifiedItem, DisplayLink, ListingItem), config.ts (SiteConfig, AnalyticsConfig)
 - **Styles:** `src/styles/global.css` - Theme colors, base styles
 
 ## Key Constraints
@@ -24,4 +24,5 @@
 ## Notes
 - Tailwind CSS v4 uses `@tailwindcss/vite` plugin (no tailwind.config.js)
 - LaTeX math rendering via remark-math/rehype-katex
+- Analytics supported via GA4 (`ga4Id`) and Umami (`umami.websiteId`) — configure in `src/config/site.ts`
 - No lint/typecheck scripts configured
