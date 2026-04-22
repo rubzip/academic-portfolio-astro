@@ -38,28 +38,35 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
 
 ## ✅ Project Status & Progress
  - [x] Refactor code
- - [ ] Add bibtex support
  - [x] Add tag system.
  - [x] Add RSS button.
  - [x] Script for checking lighthouse score
- - [ ] Change styles, make content more readable and compact
  - [x] Evaluate github pages deployment (optionally netlify, vercel)
- - [ ] Add examples with images
- - [ ] Add more examples, with different configurations
- - [ ] Improve documentation / README
  - [x] Evaluate different screen sizes
  - [x] No CSS / tailwind code theme configuration. Choosing it as a .ts config file, between a group of them
  - [x] Active or disable sections and their respective subpages
- - [ ] Make look better repo.
  - [x] Change GH repo name
- - [ ] Analytics implementation
  - [x] **VISUAL BUG:** When some navbar buttons are clicked, sidebar moves
  - [x] Add option for null title or null subtitle (and correctly moving page upper)
- - [ ] Download icons 
- - [ ] Clean and restructure `config.ts`
+ - [x] Download icons 
+ - [x] Clean and restructure `config.ts`
+### Aesthetics
+ - [ ] Define a new style make content more readable and compact
+ - [ ] Implement definitive themes
+### Features
+ - [ ] Analytics implementation
+ - [ ] Add bibtex support? There are 2 options, add bibtex as a feature of every specific article or having a master bibtex doc and mention it for having metadata
+ - [ ] Improve dev tools.
+### Clean Code
+ - [ ] Define types for every feature
+ - [ ] Refactor
+### Docs
+ - [ ] Improve documentation / README
+ - [ ] Make look better repo.
  - [ ] Add a post for explaining how to set repository
  - [ ] Add examples with code and evaluate it
- 
+ - [ ] Add examples with images
+ - [ ] Add more examples, with different configurations
  
 
 ## LightHouse Score
