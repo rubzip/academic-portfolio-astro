@@ -1,4 +1,6 @@
-export const SITE = {
+import type { SiteConfig, SettingsConfig, AnalyticsConfig } from "../types/config";
+
+export const SITE: SiteConfig = {
     website: "https://rubzip.github.io/academic-portfolio-astro/",
     author: "Albert Einstein",
     desc: "Personal academic portfolio and blog of Albert Einstein, Professor of Theoretical Physics.",
@@ -14,12 +16,12 @@ export const SITE = {
     themeDark: "default",
 };
 
-export const SETTINGS = {
+export const SETTINGS: SettingsConfig = {
     showTagsInNavbar: true,
     showRSSInFooter: true,
 };
 
-export const ANALYTICS = {
+export const ANALYTICS: AnalyticsConfig = {
     // Google Analytics 4 Measurement ID (e.g., 'G-XXXXXXXXXX')
     ga4Id: "",
     // Umami Analytics configuration
