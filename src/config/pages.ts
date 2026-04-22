@@ -1,6 +1,8 @@
-export const PAGES = {
+import type { PagesConfig } from "../types/config";
+
+export const PAGES: PagesConfig = {
     home: {
-        title: "", // Empty to hide title on home
+        title: "About Me",
         subtitle: "",
         active: true,
     },
