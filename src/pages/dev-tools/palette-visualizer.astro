@@ -31,11 +31,17 @@ const themes = {
                             <div class="flex flex-wrap gap-4">
                                 {Object.entries(colors).map(
                                     ([varName, hexValue]) => (
-                                        <div
-                                            class="w-32 h-32 rounded-2xl shadow-sm transition-all duration-300 relative z-0 hover:z-10 hover:scale-[1.15] hover:-translate-y-2 hover:shadow-2xl cursor-pointer flex-shrink-0"
-                                            style={`background-color: ${hexValue}`}
-                                            title={`${varName}:\n${hexValue}`}
-                                        />
+                                        <div class="flex flex-col gap-2">
+                                            <div
+                                                class="w-32 h-32 rounded-2xl shadow-sm transition-all duration-300 relative z-0 hover:z-10 hover:-translate-y-2 hover:shadow-xl cursor-pointer flex-shrink-0"
+                                                style={`background-color: ${hexValue}`}
+                                                title={`${varName}:\n${hexValue}`}
+                                            />
+                                            <div class="text-left px-1">
+                                                <div class="font-mono text-sm font-bold opacity-80">{varName}</div>
+                                                <div class="font-mono text-xs opacity-50 uppercase">{hexValue}</div>
+                                            </div>
+                                        </div>
                                     ),
                                 )}
                             </div>
