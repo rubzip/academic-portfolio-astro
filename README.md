@@ -59,6 +59,7 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [ ] Analytics implementation
  - [ ] Add bibtex support? There are 2 options, add bibtex as a feature of every specific article or having a master bibtex doc and mention it for having metadata
  - [ ] Improve dev tools.
+ - [ ] i18n? Maybe too much coding and not useful enough
 ### Clean Code
  - [ ] Define types for every feature
  - [ ] Refactor
