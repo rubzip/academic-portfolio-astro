@@ -9,8 +9,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "lighthouse": "npm run build && npx unlighthouse --site http://localhost:4321 --root ./dist"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.18",
@@ -24,7 +23,5 @@
     "remark-math": "^6.0.0",
     "tailwindcss": "^4.2.2"
   },
-  "devDependencies": {
-    "unlighthouse": "^0.17.9"
-  }
+  "devDependencies": {}
 }

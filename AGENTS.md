@@ -4,7 +4,6 @@
 - `npm run dev` - Start dev server
 - `npm run build` - Production build
 - `npm run preview` - Preview build
-- `npm run lighthouse` - Run Lighthouse audit
 
 ## Requirements
 - Node.js >= 22.12.0
@@ -13,7 +12,7 @@
 - **Barrel files:** `src/config/index.ts`, `src/types/index.ts`
 - **Content:** `src/content/` - Add `.md` files to subdirectories (posts/, publications/, projects/, talks/, teaching/)
 - **Config:** `src/config/` - site.ts (SITE, SETTINGS, ANALYTICS), pages.ts (PAGES), navigation.ts (NAV_LINKS), themes.ts
-- **Types:** `src/types/` - content.ts (Bio, CVItem, Blog, Publication, etc.), display.ts (UnifiedItem, DisplayLink, ListingItem), config.ts (SiteConfig, AnalyticsConfig)
+- **Types:** `src/types/` - content.ts (Bio, CVItem, Blog, Publication, etc.), display.ts (ListingItem, DetailItem), config.ts, themes.ts
 - **Styles:** `src/styles/global.css` - Theme colors, base styles
 
 ## Key Constraints

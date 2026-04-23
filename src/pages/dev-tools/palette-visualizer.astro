@@ -1,34 +1,25 @@
 ---
-import { LIGHT_THEMES, DARK_THEMES, SETTINGS } from "../../config";
+import { THEMES, SETTINGS } from "../../config";
 import DevToolsLayout from "../../layouts/DevToolsLayout.astro";
 
 const redirect: boolean = import.meta.env.PROD && !SETTINGS.addDevToolsInProduction;
 if (redirect) {
     return Astro.redirect("/404");
 }
-
-const themes = {
-    ...Object.fromEntries(
-        Object.entries(LIGHT_THEMES).map(([k, v]) => [`Light - ${k}`, v]),
-    ),
-    ...Object.fromEntries(
-        Object.entries(DARK_THEMES).map(([k, v]) => [`Dark - ${k}`, v]),
-    ),
-};
 ---
 
 <DevToolsLayout title="Color Palettes" description="Minimalist 6-color strip visualizer directly mapping to themes.ts">
 
             <div class="flex flex-col gap-16">
                 {
-                    Object.entries(themes).map(([name, colors]) => (
+                    Object.entries(THEMES).map(([name, colors]: [string, any]) => (
                         <div>
                             <h2 class="text-xl font-bold mb-4 capitalize">
-                                {name}
+                                {name.replace('_', ' ')}
                             </h2>
                             <div class="flex flex-wrap gap-4">
                                 {Object.entries(colors).map(
-                                    ([varName, hexValue]) => (
+                                    ([varName, hexValue]: [string, any]) => (
                                         <div class="flex flex-col gap-2">
                                             <div
                                                 class="w-32 h-32 rounded-2xl shadow-sm transition-all duration-300 relative z-0 hover:z-10 hover:-translate-y-2 hover:shadow-xl cursor-pointer flex-shrink-0"

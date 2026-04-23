@@ -1,11 +1,14 @@
 ---
-import { LIGHT_THEMES, DARK_THEMES, SETTINGS } from "../../config";
+import { THEMES, SETTINGS } from "../../config";
 import DevToolsLayout from "../../layouts/DevToolsLayout.astro";
 
 const redirect: boolean = import.meta.env.PROD && !SETTINGS.addDevToolsInProduction;
 if (redirect) {
     return Astro.redirect("/404");
 }
+
+const lightThemes = Object.entries(THEMES).filter(([_, t]) => !t.isDark);
+const darkThemes = Object.entries(THEMES).filter(([_, t]) => t.isDark);
 ---
 
 <DevToolsLayout title="Theme Visualizer" description="Live iframe previews of index.astro for all defined themes.">
@@ -18,11 +21,11 @@ if (redirect) {
                 </h2>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     {
-                        Object.entries(LIGHT_THEMES).map(
-                            ([themeName, colors]) => (
+                        lightThemes.map(
+                            ([themeName, colors]: [string, any]) => (
                                 <div class="flex flex-col gap-2">
                                     <h3 class="text-sm font-mono font-bold text-gray-500 uppercase tracking-tighter">
-                                        {themeName}
+                                        {themeName.replace('light_', '')}
                                     </h3>
                                     <div class="iframe-container">
                                         <iframe
@@ -56,11 +59,11 @@ if (redirect) {
                 </h2>
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                     {
-                        Object.entries(DARK_THEMES).map(
-                            ([themeName, colors]) => (
+                        darkThemes.map(
+                            ([themeName, colors]: [string, any]) => (
                                 <div class="flex flex-col gap-2">
                                     <h3 class="text-lg font-bold text-slate-300 capitalize">
-                                        {themeName}
+                                        {themeName.replace('dark_', '')}
                                     </h3>
                                     <div class="iframe-container border-gray-100">
                                         <iframe

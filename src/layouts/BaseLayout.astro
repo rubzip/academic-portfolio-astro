@@ -1,5 +1,5 @@
 ---
-import { SITE, ANALYTICS, LIGHT_THEMES, DARK_THEMES } from "../config";
+import { SITE, ANALYTICS, THEMES } from "../config";
 import { ClientRouter } from "astro:transitions";
 import LeftSidebar from "../components/layout/LeftSidebar.astro";
 import RightMain from "../components/layout/RightMain.astro";
@@ -14,11 +14,11 @@ import "katex/dist/katex.min.css";
 import "../styles/global.css";
 
 const themeLight =
-    LIGHT_THEMES[SITE.themeLight as keyof typeof LIGHT_THEMES] ||
-    LIGHT_THEMES.default;
+    THEMES[`light_${SITE.themeLight}` as keyof typeof THEMES] ||
+    THEMES.light_default;
 const themeDark =
-    DARK_THEMES[SITE.themeDark as keyof typeof DARK_THEMES] ||
-    DARK_THEMES.default;
+    THEMES[`dark_${SITE.themeDark}` as keyof typeof THEMES] ||
+    THEMES.dark_default;
 
 interface Props {
     title: string;
