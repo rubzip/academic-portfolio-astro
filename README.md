@@ -91,26 +91,31 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] Clean and restructure `config.ts`
 ### Bugs
  - [x] Sometimes when you first load page, light/dark toggle doesnt work. You have to refresh or change page for doing it
- - [ ] Pagination is broken. It doesnt show pagination for blog now
+ - [x] Pagination is broken. It doesnt show pagination for blog now. (Closed, it wasnt a bug)
+### TO DO
+ - [ ] Add `addDevToolsInProduction` to `SettingsConfig`
+ - [ ] Add new file `config/social.ts`
+ - [ ] Add `assets/fonts.ts`?
+ - [ ] Rethink what to do with `assets/icons.ts`
+ - [ ] Delete unused features (Lighthouse, scripts, ...)
 ### Aesthetics
  - [ ] Define a new style make content more readable and compact
  - [ ] Implement definitive themes
 ### Features
  - [x] Analytics implementation
- - [ ] Add bibtex support? There are 2 options, add bibtex as a feature of every specific article or having a master bibtex doc and mention it for having metadata
+ - [x] Add bibtex support? There are 2 options, add bibtex as a feature of every specific article or having a master bibtex doc and mention it for having metadata
  - [x] Improve dev tools.
  - [ ] i18n? Maybe too much coding and not useful enough
 ### Clean Code
  - [x] Define types for every feature
- - [ ] Refactor
+ - [x] Refactor
 ### Docs
  - [ ] Improve documentation / README
  - [ ] Make look better repo.
  - [ ] Add a post for explaining how to set repository
  - [ ] Add examples with code and evaluate it
  - [ ] Add examples with images
- - [ ] Add more examples, with different configurations
- 
+ - [ ] Add more examples, with different configurations 
 
 ## LightHouse Score
 ![Lighthouse Performance](https://lighthouse-metrics.com/api/v1/pages/https-astro-academics-page-vercel-app/performance/badge.svg)
