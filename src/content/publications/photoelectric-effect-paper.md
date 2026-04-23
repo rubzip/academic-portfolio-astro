@@ -1,7 +1,7 @@
 ---
 title: "On a Heuristic Point of View Concerning the Production and Transformation of Light"
-authors: "Albert Einstein"
-date: 1905-06-09
+author: "Albert Einstein"
+date: "1905-06-09"
 journal: "Annalen der Physik"
 external_url: "https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19053220607"
 tags: ["Quantum Mechanics", "Photoelectric Effect"]

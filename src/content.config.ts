@@ -6,10 +6,10 @@ const publications = defineCollection({
     loader: glob({ pattern: "**/*.md", base: "./src/content/publications" }),
     schema: z.object({
         title: z.string(),
-        authors: z.string(),
-        date: z.coerce.date(),
+        author: z.string().optional(),
+        date: z.string().optional(),
         journal: z.string().optional(),
-        external_url: z.string().url().optional(),
+        external_url: z.string().optional(),
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
     }),
@@ -19,9 +19,9 @@ const talks = defineCollection({
     loader: glob({ pattern: "**/*.md", base: "./src/content/talks" }),
     schema: z.object({
         title: z.string(),
-        date: z.coerce.date(),
-        event: z.string(),
-        external_url: z.string().url().optional(),
+        date: z.string().optional(),
+        event: z.string().optional(),
+        external_url: z.string().optional(),
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
     }),
@@ -31,11 +31,11 @@ const posts = defineCollection({
     loader: glob({ pattern: "**/*.md", base: "./src/content/posts" }),
     schema: z.object({
         title: z.string(),
-        date: z.coerce.date(),
+        date: z.string().optional(),
         description: z.string().optional(),
         author: z.string().optional(),
         tags: z.array(z.string()).optional(),
-        external_url: z.string().url().optional(),
+        external_url: z.string().optional(),
     }),
 });
 
@@ -62,9 +62,9 @@ const projects = defineCollection({
     loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
     schema: z.object({
         title: z.string(),
-        description: z.string(),
+        description: z.string().optional(),
         tags: z.array(z.string()).optional(),
-        external_url: z.string().url().optional(),
+        external_url: z.string().optional(),
     }),
 });
 

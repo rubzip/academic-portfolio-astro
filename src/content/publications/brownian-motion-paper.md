@@ -1,7 +1,7 @@
 ---
 title: "On the Movement of Small Particles Suspended in Stationary Liquids Required by the Molecular-Kinetic Theory of Heat"
-authors: "Albert Einstein"
-date: 1905-07-18
+author: "Albert Einstein"
+date: "1905-07-18"
 journal: "Annalen der Physik"
 external_url: "https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19053220806"
 tags: ["Thermodynamics", "Statistical Mechanics"]

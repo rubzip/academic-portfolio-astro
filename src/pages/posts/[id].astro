@@ -12,7 +12,7 @@ export async function getStaticPaths() {
     if (PAGES.blog.active === false) return [];
     const posts = await getCollection("posts");
     const sortedPosts = posts.sort(
-        (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+        (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
     );
 
     return sortedPosts.map((post, i) => ({
@@ -37,7 +37,7 @@ const readingTime = `${getReadingTime(post.body || "")} min read`;
         {
             prevPost && (
                 <a
-                    href={`/blog/${prevPost.id}`}
+                    href={`/posts/${prevPost.id}`}
                     class="nav-prev flex flex-col group max-w-[45%] no-underline"
                 >
                     <span class="nav-label text-[0.8rem] uppercase tracking-wider opacity-75 font-bold mb-2">
@@ -53,7 +53,7 @@ const readingTime = `${getReadingTime(post.body || "")} min read`;
         {
             nextPost && (
                 <a
-                    href={`/blog/${nextPost.id}`}
+                    href={`/posts/${nextPost.id}`}
                     class="nav-next flex flex-col items-end text-right group max-w-[45%] no-underline"
                 >
                     <span class="nav-label text-[0.8rem] uppercase tracking-wider opacity-75 font-bold mb-2">

@@ -1,6 +1,6 @@
 ---
 title: "Blog Post Title"
-date: 2026-04-19
+date: "2026-04-19"
 description: "A short preview of the post seen in the blog list."
 author: "Your Name"
 tags:

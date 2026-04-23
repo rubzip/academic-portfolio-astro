@@ -11,7 +11,7 @@ export async function GET(context: any) {
             title: post.data.title,
             pubDate: post.data.date,
             description: post.data.description,
-            link: `/blog/${post.id}/`,
+            link: `/posts/${post.id}/`,
         })),
         ...publications.map((pub: any) => ({
             title: `[Publication] ${pub.data.title}`,
@@ -19,7 +19,7 @@ export async function GET(context: any) {
             description: pub.data.description || `Published in ${pub.data.journal || 'Journal'}`,
             link: `/publications/${pub.id}/`,
         })),
-    ].sort((a, b) => b.pubDate.getTime() - a.pubDate.getTime());
+    ].sort((a, b) => new Date(b.pubDate).getTime() - new Date(a.pubDate).getTime());
 
     return rss({
         title: SITE.title,

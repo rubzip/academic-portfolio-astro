@@ -1,6 +1,6 @@
 ---
 title: "The Principle of Relativity and its Consequences"
-date: 1909-09-21
+date: "1909-09-21"
 event: "81st Assembly of German Natural Scientists and Physicians"
 external_url: "https://example.com/talk-slides"
 tags: ["Relativity", "History of Science"]

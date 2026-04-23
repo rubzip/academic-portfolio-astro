@@ -1,6 +1,6 @@
 ---
 title: "On a Heuristic Point of View Concerning the Production and Transformation of Light"
-date: 2026-03-15
+date: "2026-03-15"
 description: "Proposing that light itself consists of discrete localized packets of energy, or 'quanta', to explain the photoelectric effect."
 author: "Albert Einstein"
 tags: ["physics", "quantum", "light"]

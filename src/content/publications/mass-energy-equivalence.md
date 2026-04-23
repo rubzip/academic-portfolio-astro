@@ -1,7 +1,7 @@
 ---
 title: "Does the Inertia of a Body Depend Upon Its Energy Content?"
-authors: "Albert Einstein"
-date: 1905-11-21
+author: "Albert Einstein"
+date: "1905-11-21"
 journal: "Annalen der Physik"
 external_url: "https://onlinelibrary.wiley.com/doi/abs/10.1002/andp.19053231314"
 tags: ["Special Relativity", "E=mc²"]

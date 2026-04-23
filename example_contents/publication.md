@@ -1,7 +1,7 @@
 ---
 title: "The Title of Your Research Paper"
-authors: "A. Author et al."
-date: 2026-04-19
+author: "A. Author et al."
+date: "2026-04-19"
 journal: "Name of the Journal (Optional)"
 external_url: "https://example.com/publisher-link (Optional)"
 tags:

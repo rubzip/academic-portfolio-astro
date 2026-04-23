@@ -1,6 +1,6 @@
 ---
 title: "On the Movement of Small Particles Suspended in Stationary Liquids"
-date: 2026-01-05
+date: "2026-01-05"
 description: "Providing empirical evidence for the existence of atoms through the statistical analysis of Brownian motion."
 author: "Albert Einstein"
 tags: ["physics", "atoms", "statistical-mechanics"]

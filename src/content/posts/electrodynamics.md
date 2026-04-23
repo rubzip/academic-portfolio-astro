@@ -1,6 +1,6 @@
 ---
 title: "On the Electrodynamics of Moving Bodies"
-date: 2026-02-10
+date: "2026-02-10"
 description: "Introducing the special theory of relativity and the reconciliation of Maxwell's equations with the principle of relativity."
 author: "Albert Einstein"
 tags: ["relativity", "physics", "light"]

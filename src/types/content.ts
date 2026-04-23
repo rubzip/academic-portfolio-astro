@@ -26,26 +26,29 @@ export interface CV {
 
 export interface BasePage {
   title: string;
-  description: string;
+  description?: string;
   tags: string[];
-  date: string;
 }
 
 export interface Blog extends BasePage {
+  date: string;
   author?: string;
 }
 
 export interface Project extends BasePage {
+  date: string;
   external_url?: string;
 }
 
 export interface Publication extends BasePage {
-  authors: string;
+  date: string;
+  author?: string;
   journal?: string;
   external_url?: string;
 }
 
 export interface Talk extends BasePage {
+  date: string;
   event?: string;
   external_url?: string;
 }

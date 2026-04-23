@@ -46,8 +46,8 @@ export async function getContentByTag(tag: string) {
         ...posts.filter(filterFn).map(e => ({ ...e, collection: 'posts' })),
         ...teaching.filter(filterFn).map(e => ({ ...e, collection: 'teaching' })),
     ].sort((a, b) => {
-        const dateA = new Date((a.data as any).publicationDate || (a.data as any).date || (a.data as any).pubDate || 0);
-        const dateB = new Date((b.data as any).publicationDate || (b.data as any).date || (b.data as any).pubDate || 0);
+        const dateA = new Date((a.data as any).date || 0);
+        const dateB = new Date((b.data as any).date || 0);
         return dateB.getTime() - dateA.getTime();
     });
 }

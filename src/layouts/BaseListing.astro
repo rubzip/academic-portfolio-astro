@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import BaseItemCard from "../components/ui/BaseItemCard.astro";
-import { getUnifiedItem } from "../utils/adapters";
+import { getListingItem } from "../utils/adapters";
 
 interface Props {
     collection:
@@ -33,13 +33,11 @@ if (page) {
     entries = page.data;
 }
 
-// Generic sorting logic
+// Sort by date only
 const sortedEntries = entries.sort((a: any, b: any) => {
-    const dateA =
-        a.data.publicationDate || a.data.date || a.data.pubDate || new Date(0);
-    const dateB =
-        b.data.publicationDate || b.data.date || b.data.pubDate || new Date(0);
-    return dateB.getTime() - dateA.getTime();
+    const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
+    const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
+    return dateB - dateA;
 });
 ---
 
@@ -55,9 +53,15 @@ const sortedEntries = entries.sort((a: any, b: any) => {
 
     <section class="item-list">
         {
-            sortedEntries.map((entry: any) => (
-                <BaseItemCard {...getUnifiedItem(entry, collection)} />
-            ))
+            sortedEntries.map((entry: any) => {
+                const item = getListingItem(entry);
+                return (
+                    <BaseItemCard
+                        {...item}
+                        href={`/${collection}/${entry.id}`}
+                    />
+                );
+            })
         }
     </section>
 

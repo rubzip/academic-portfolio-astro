@@ -1,19 +1,19 @@
 ---
 import Tag from "./Tag.astro";
-import type { DisplayLink } from "../../types";
+import Icon from "./Icon.astro";
 
 interface Props {
     title: string;
     href: string;
-    metaLine1?: string;
-    metaLine2?: string;
     description?: string;
-    links: DisplayLink[];
+    date?: string;
+    authors?: string;
+    extraInput?: string;
     tags?: string[];
+    externalUrl?: string;
 }
 
-const { title, href, metaLine1, metaLine2, description, links, tags } =
-    Astro.props;
+const { title, href, description, date, authors, extraInput, tags, externalUrl } = Astro.props;
 ---
 
 <article class="item-card">
@@ -22,13 +22,20 @@ const { title, href, metaLine1, metaLine2, description, links, tags } =
             <h3>{title}</h3>
         </a>
 
-        {
-            metaLine1 && (
-                <div class="item-meta">
-                    <span>{metaLine1}</span>
-                </div>
-            )
-        }
+        <div class="item-meta flex gap-4 text-sm opacity-75">
+            {date && (
+                <span class="flex items-center gap-1">
+                    <Icon name="Calendar" size={14} />
+                    <span>{date}</span>
+                </span>
+            )}
+            {authors && (
+                <span class="flex items-center gap-1">
+                    <Icon name="User" size={14} />
+                    <span>{authors}</span>
+                </span>
+            )}
+        </div>
 
         {
             tags && tags.length > 0 && (
@@ -40,22 +47,16 @@ const { title, href, metaLine1, metaLine2, description, links, tags } =
             )
         }
 
-        {
-            metaLine2 && (
-                <p class="font-semibold opacity-90 mt-4 mb-1">{metaLine2}</p>
-            )
-        }
-
         {description && <p class="opacity-80 line-clamp-3">{description}</p>}
     </div>
 
-    <div class="item-links">
-        {
-            links.map((link) => (
-                <a href={link.href} target="_blank">
-                    {link.label} &rarr;
+    {
+        externalUrl && (
+            <div class="item-links">
+                <a href={externalUrl} target="_blank">
+                    View &rarr;
                 </a>
-            ))
-        }
-    </div>
+            </div>
+        )
+    }
 </article>

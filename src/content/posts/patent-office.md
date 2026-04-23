@@ -1,6 +1,6 @@
 ---
 title: "The Secular Cloister: Reflections on Bern"
-date: 1902-06-23
+date: "1902-06-23"
 description: "Reflections on my position as a technical expert at the Swiss Patent Office and its impact on my theoretical work."
 author: "Albert Einstein"
 tags: ["bern", "career", "personal"]

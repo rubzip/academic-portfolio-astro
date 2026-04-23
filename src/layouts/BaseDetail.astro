@@ -5,49 +5,79 @@ import BackLink from "../components/ui/BackLink.astro";
 import ContentHeader from "../components/content/ContentHeader.astro";
 import ContentLinks from "../components/content/ContentLinks.astro";
 import Tag from "../components/ui/Tag.astro";
-import { getUnifiedItem } from "../utils/adapters";
+import Icon from "../components/ui/Icon.astro";
+import { getDetailItem } from "../utils/adapters";
 
 interface Props {
-    collection:
-        | "publications"
-        | "talks"
-        | "projects"
-        | "posts"
-        | "teaching"
-        | "cv";
+    collection: "publications" | "talks" | "projects" | "posts" | "teaching";
     id: string;
-    readingTime?: string;
 }
 
-const { collection, id, readingTime } = Astro.props;
+const { collection, id } = Astro.props;
 const entry = (await getEntry(collection, id)) as any;
 
 if (!entry) return Astro.redirect("/404");
 
 const { Content } = await render(entry);
-const { meta, links, backHref, backLabel, title, tags } = getUnifiedItem(
-    entry,
-    collection,
-);
+const detail = getDetailItem(entry, collection);
+
+const meta = [];
+if (detail.date) {
+    meta.push({ label: "Date", value: detail.date, icon: "Calendar" });
+}
+if (detail.authors) {
+    meta.push({ label: "Author", value: detail.authors, icon: "User" });
+}
+if (detail.extraInput) {
+    const icon = "Institution";
+    const label =
+        collection === "publications"
+            ? "Journal"
+            : collection === "talks"
+              ? "Event"
+              : collection === "teaching"
+                ? "Institution"
+                : "Info";
+    meta.push({ label, value: detail.extraInput, icon });
+}
 ---
 
-<BaseLayout title={title}>
-    <BackLink href={backHref} label={backLabel} />
+<BaseLayout title={detail.title}>
+    <BackLink href={detail.backHref} label={collection} />
 
     <article class="content-container pt-4">
-        <ContentHeader title={title} meta={meta} />
+        <h1 class="page-title mb-8">{detail.title}</h1>
 
         {
-            tags && tags.length > 0 && (
+            meta.length > 0 && (
+                <div class="item-meta flex gap-6 text-sm opacity-75 mb-6">
+                    {meta.map((m: any) => (
+                        <span class="flex items-center gap-2">
+                            <Icon name={m.icon} size={16} />
+                            <span>{m.value}</span>
+                        </span>
+                    ))}
+                </div>
+            )
+        }
+
+        {
+            detail.tags && detail.tags.length > 0 && (
                 <div class="tags container-narrow flex gap-3 flex-wrap mb-10">
-                    {tags.map((tag: string) => (
+                    {detail.tags.map((tag: string) => (
                         <Tag name={tag} size="md" />
                     ))}
                 </div>
             )
         }
 
-        <ContentLinks links={links} />
+        {
+            detail.externalUrl && (
+                <ContentLinks
+                    links={[{ href: detail.externalUrl, label: "View" }]}
+                />
+            )
+        }
 
         <div class="prose container-narrow pt-8">
             <Content />

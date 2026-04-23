@@ -1,6 +1,6 @@
 ---
 title: "Does the Inertia of a Body Depend Upon Its Energy-Content?"
-date: 1905-11-21
+date: "1905-11-21"
 description: "Deriving the equivalence of mass and energy, the most profound consequence of the special theory of relativity."
 author: "Albert Einstein"
 tags: ["physics", "relativity", "equations", "mass-energy"]
