@@ -138,6 +138,7 @@ export interface Bio {
  - [ ] Add an extra theme visualizer, it should be simpler. Instead of loading the full page maybe would be better loading some easier html
  - [ ] Add `images/` folder, `robots.txt`.
  - [ ] Add share buttons to posts?
+ - [ ] Change content to Shannon
  
 ### Aesthetics
  - [ ] Define a new style make content more readable and compact
