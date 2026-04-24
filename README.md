@@ -102,6 +102,36 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [x] Move theme interface to types. Unify LIGHT_THEMES and DARK_THEMES in themes. Probably we should add an extra parameter to interface (isDark)
  - [x] Naming convention: I would like to change boolean variables (e.g. 'active' -> 'isActive')
  - [ ] Maybe adding settings to `bio.md`. Maybe we could place there things like: avatar, name, short_bio, institution...
+```typescript
+// types/config.ts
+export interface SiteConfig {
+    url: string;
+    author: string;
+    description: string;
+    title: string;
+    postPerPage: number;
+    favicon: string;
+}
+
+export interface ThemeConfig {
+    lightAndDark: boolean;
+    themeLight: string;
+    themeDark?: string;
+}
+
+export interface SettingsConfig {
+    showTagsInNavbar: boolean;
+    showRSSInFooter: boolean;
+    addDevToolsInProduction: boolean;
+}
+// types/content.ts
+export interface Bio {
+    name: string;
+    avatar: string;
+    shortBio?: string;
+    institution?: string;
+}
+```
  - [ ] Add code examples and images in posts
  - [ ] Remove G4A or consider doing it. It is mandatory to add cookies policy in case we are tracking with G4A. Talk about why is great Umami analytics (low control).
  - [ ] Set things for loading lazyly analytics and keeping performance good
