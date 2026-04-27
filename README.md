@@ -99,7 +99,7 @@ Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any 
  - [ ] Add `assets/fonts.ts`?
  - [ ] Rethink what to do with `assets/icons.ts`
  - [ ] Delete unused features (Lighthouse, scripts, ...)
- - [x] Move theme interface to types. Unify LIGHT_THEMES and DARK_THEMES in themes. Probably we should add an extra parameter to interface (isDark)
+ - [ ] Move theme interface to types. Unify LIGHT_THEMES and DARK_THEMES in themes. Probably we should add an extra parameter to interface (isDark)
  - [x] Naming convention: I would like to change boolean variables (e.g. 'active' -> 'isActive')
  - [ ] Maybe adding settings to `bio.md`. Maybe we could place there things like: avatar, name, short_bio, institution...
 ```typescript
