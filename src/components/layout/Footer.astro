@@ -1,38 +1,17 @@
 ---
-import { SITE, SOCIAL_ICONS } from "../../config";
+import { SITE } from "../../config";
 import Icon from "../ui/Icon.astro";
 
 const currentYear = new Date().getFullYear();
 ---
 
-<footer
-    class="mt-24 pb-12 border-t border-border pt-8 opacity-75 text-[0.9rem]"
->
-    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <p>
-            &copy; {currentYear}
-            {SITE.author}. All rights reserved.
-        </p>
-        <div class="flex items-center gap-4">
-            <a
-                href="/rss.xml"
-                aria-label="RSS Feed"
-                title="RSS Feed"
-                target="_blank"
-                rel="noreferrer"
-                class="hover:text-accent transition-colors"
-            >
-                <Icon name="RSS" size={24} />
-            </a>
-            <p class="font-medium">
-                Built with <a
-                    href="https://github.com/rubzip/astro-academics-page"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="hover:text-foreground transition-colors underline decoration-border underline-offset-4"
-                    >Astro Academic Pages</a
-                >
-            </p>
-        </div>
+<footer class="footer">
+    <div class="flex items-center gap-4">
+        <span class="body-xs">&copy; {currentYear} {SITE.author}.</span>
+        <span class="body-xs" style="opacity: 0.5;">·</span>
+        <span class="body-xs">Built with <a href="https://github.com/rubzip/astro-academics-page" target="_blank" rel="noopener noreferrer" class="link">Astro</a></span>
     </div>
+    <a href="/rss.xml" aria-label="RSS Feed" title="RSS Feed" target="_blank" rel="noreferrer" class="btn-icon" style="width: 28px; height: 28px;">
+        <Icon name="RSS" size={16} />
+    </a>
 </footer>

@@ -2,8 +2,6 @@
 import { getEntry, render } from "astro:content";
 import BaseLayout from "./BaseLayout.astro";
 import BackLink from "../components/ui/BackLink.astro";
-import ContentHeader from "../components/content/ContentHeader.astro";
-import ContentLinks from "../components/content/ContentLinks.astro";
 import Tag from "../components/ui/Tag.astro";
 import Icon from "../components/ui/Icon.astro";
 import { getDetailItem } from "../utils/adapters";
@@ -23,22 +21,11 @@ const { Content } = await render(entry);
 const detail = getDetailItem(entry, collection);
 
 const meta = [];
-if (detail.date) {
-    meta.push({ label: "Date", value: detail.date, icon: "Calendar" });
-}
-if (detail.authors) {
-    meta.push({ label: "Author", value: detail.authors, icon: "User" });
-}
+if (detail.date) meta.push({ label: "Date", value: detail.date, icon: "Calendar" });
+if (detail.authors) meta.push({ label: "Author", value: detail.authors, icon: "User" });
 if (detail.extraInput) {
     const icon = "Institution";
-    const label =
-        collection === "publications"
-            ? "Journal"
-            : collection === "talks"
-              ? "Event"
-              : collection === "teaching"
-                ? "Institution"
-                : "Info";
+    const label = collection === "publications" ? "Journal" : collection === "talks" ? "Event" : collection === "teaching" ? "Institution" : "Info";
     meta.push({ label, value: detail.extraInput, icon });
 }
 
@@ -46,54 +33,43 @@ const description = entry.data.description || detail.description || SITE.desc;
 const ogImage = entry.data.image || SITE.ogImage;
 ---
 
-<BaseLayout 
-    title={detail.title}
-    description={description}
-    ogImage={ogImage}
-    ogType="article"
->
-    <BackLink href={detail.backHref} label={collection} />
+<BaseLayout title={detail.title} description={description} ogImage={ogImage} ogType="article">
+    <div class="flex justify-between items-center mb-4">
+        <BackLink href={detail.backHref} label={collection} />
+        {detail.externalUrl && (
+            <a href={detail.externalUrl} target="_blank" rel="noopener noreferrer" class="link">
+                View external
+            </a>
+        )}
+    </div>
 
-    <article class="content-container pt-4">
-        <h1 class="page-title mb-8">{detail.title}</h1>
+    <article>
+        <h1 class="page-title mb-4">{detail.title}</h1>
 
-        {
-            meta.length > 0 && (
-                <div class="item-meta flex gap-6 text-sm opacity-75 mb-6">
-                    {meta.map((m: any) => (
-                        <span class="flex items-center gap-2">
-                            <Icon name={m.icon} size={16} />
-                            <span>{m.value}</span>
-                        </span>
-                    ))}
-                </div>
-            )
-        }
+        {meta.length > 0 && (
+            <div class="card-meta mb-4">
+                {meta.map((m: any) => (
+                    <span class="flex items-center gap-1">
+                        <Icon name={m.icon} size={14} />
+                        <span>{m.value}</span>
+                    </span>
+                ))}
+            </div>
+        )}
 
-        {
-            detail.tags && detail.tags.length > 0 && (
-                <div class="tags container-narrow flex gap-3 flex-wrap mb-10">
-                    {detail.tags.map((tag: string) => (
-                        <Tag name={tag} size="md" />
-                    ))}
-                </div>
-            )
-        }
+        {detail.tags && detail.tags.length > 0 && (
+            <div class="flex gap-2 flex-wrap mb-4">
+                {detail.tags.map((tag: string) => (
+                    <Tag name={tag} size="sm" />
+                ))}
+            </div>
+        )}
 
-        {
-            detail.externalUrl && (
-                <ContentLinks
-                    links={[{ href: detail.externalUrl, label: "View" }]}
-                />
-            )
-        }
-
-        <div class="prose container-narrow pt-8">
+        <div class="prose">
             <Content />
         </div>
 
         <slot name="share" />
-
         <slot name="footer" />
     </article>
 </BaseLayout>

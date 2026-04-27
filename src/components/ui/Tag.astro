@@ -8,20 +8,13 @@ interface Props {
 const { name, count, size = "md" } = Astro.props;
 
 const sizeClasses = {
-    sm: "text-[0.75rem] px-2 py-0.5",
-    md: "text-[0.85rem] px-3 py-1",
-    lg: "text-[1.1rem] px-4 py-2",
+    sm: "text-xs",
+    md: "text-sm",
+    lg: "text-base",
 };
 ---
 
-<a
-    href={`/tags/${name.toLowerCase()}`}
-    class={`inline-block font-mono bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-md transition-colors duration-200 hover:text-blue-600 dark:hover:text-blue-400 ${sizeClasses[size]}`}
->
+<a href={`/tags/${name.toLowerCase()}`} class={`tag ${sizeClasses[size]}`}>
     #{name}
-    {
-        count !== undefined && (
-            <span class="opacity-50 ml-1 text-[0.8em]">({count})</span>
-        )
-    }
+    {count !== undefined && <span class="opacity-60 ml-1">({count})</span>}
 </a>

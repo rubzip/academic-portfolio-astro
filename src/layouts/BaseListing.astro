@@ -5,35 +5,18 @@ import BaseItemCard from "../components/ui/BaseItemCard.astro";
 import { getListingItem } from "../utils/adapters";
 
 interface Props {
-    collection:
-        | "publications"
-        | "talks"
-        | "projects"
-        | "posts"
-        | "teaching"
-        | "all";
+    collection: "publications" | "talks" | "projects" | "posts" | "teaching" | "all";
     title: string;
     subtitle?: string;
     entries?: any[];
     page?: any;
 }
 
-const {
-    collection,
-    title,
-    subtitle,
-    entries: manualEntries,
-    page,
-} = Astro.props;
+const { collection, title, subtitle, entries: manualEntries, page } = Astro.props;
 
-let entries =
-    manualEntries ||
-    (collection !== "all" ? await getCollection(collection as any) : []);
-if (page) {
-    entries = page.data;
-}
+let entries = manualEntries || (collection !== "all" ? await getCollection(collection as any) : []);
+if (page) entries = page.data;
 
-// Sort by date only
 const sortedEntries = entries.sort((a: any, b: any) => {
     const dateA = a.data.date ? new Date(a.data.date).getTime() : 0;
     const dateB = b.data.date ? new Date(b.data.date).getTime() : 0;
@@ -42,63 +25,33 @@ const sortedEntries = entries.sort((a: any, b: any) => {
 ---
 
 <BaseLayout title={title}>
-    {
-        (title || subtitle) && (
-            <header class="page-header">
-                {title && <h1 class="page-title">{title}</h1>}
-                {subtitle && <p class="page-subtitle">{subtitle}</p>}
-            </header>
-        )
-    }
+    {(title || subtitle) && (
+        <header class="page-header">
+            {title && <h1 class="page-title">{title}</h1>}
+            {subtitle && <p class="page-subtitle">{subtitle}</p>}
+        </header>
+    )}
 
     <section class="item-list">
-        {
-            sortedEntries.map((entry: any) => {
-                const item = getListingItem(entry);
-                const { image, ...itemWithoutImage } = item;
-                return (
-                    <BaseItemCard
-                        {...itemWithoutImage}
-                        href={`/${collection}/${entry.id}`}
-                    />
-                );
-            })
-        }
+        {sortedEntries.map((entry: any) => {
+            const item = getListingItem(entry);
+            return <BaseItemCard {...item} href={`/${collection}/${entry.id}`} />;
+        })}
     </section>
 
-    {
-        page && page.lastPage > 1 && (
-            <nav class="pagination container-narrow flex justify-center items-center mt-20 pt-12 border-t border-dashed border-border gap-8">
-                {page.url.prev ? (
-                    <a
-                        href={page.url.prev}
-                        class="font-bold hover:text-accent transition-colors"
-                    >
-                        &larr; Newer
-                    </a>
-                ) : (
-                    <span class="opacity-30 cursor-not-allowed font-bold">
-                        &larr; Newer
-                    </span>
-                )}
-
-                <div class="page-count opacity-75 font-medium mx-4">
-                    Page {page.currentPage} of {page.lastPage}
-                </div>
-
-                {page.url.next ? (
-                    <a
-                        href={page.url.next}
-                        class="font-bold hover:text-accent transition-colors"
-                    >
-                        Older &rarr;
-                    </a>
-                ) : (
-                    <span class="opacity-30 cursor-not-allowed font-bold">
-                        Older &rarr;
-                    </span>
-                )}
-            </nav>
-        )
-    }
+    {page && page.lastPage > 1 && (
+        <nav class="flex justify-center items-center mt-8 pt-8 border-t border-dashed border-border gap-6">
+            {page.url.prev ? (
+                <a href={page.url.prev} class="btn btn-sm">&larr; Newer</a>
+            ) : (
+                <span class="body-sm" style="opacity: 0.4;">&larr; Newer</span>
+            )}
+            <span class="body-sm" style="opacity: 0.6;">Page {page.currentPage} of {page.lastPage}</span>
+            {page.url.next ? (
+                <a href={page.url.next} class="btn btn-sm">Older &rarr;</a>
+            ) : (
+                <span class="body-sm" style="opacity: 0.4;">Older &rarr;</span>
+            )}
+        </nav>
+    )}
 </BaseLayout>

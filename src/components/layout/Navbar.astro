@@ -1,20 +1,17 @@
 ---
-import { NAV_LINKS, PAGES } from "../../config";
+import { NAV_LINKS, PAGES, THEME_CONFIG } from "../../config";
 import Icon from "../ui/Icon.astro";
 
 const currentPath = Astro.url.pathname;
+const showToggle = THEME_CONFIG.lightAndDark;
 ---
 
-<nav
-    class="sticky top-0 z-50 mx-8 md:mx-16 lg:mx-24 py-6 mb-16 flex justify-between items-center bg-background border-b border-border transition-all duration-300"
->
-    <ul class="flex gap-x-8 gap-y-4 list-none p-0 flex-wrap items-center">
+<nav class="navbar">
+    <ul class="nav-links">
         {
             NAV_LINKS.filter((link) => {
                 const isHome = link.href === "/";
-                const pageKey = isHome
-                    ? "home"
-                    : link.href.split("/").filter(Boolean)[0];
+                const pageKey = isHome ? "home" : link.href.split("/").filter(Boolean)[0];
                 const pageConfig = (PAGES as any)[pageKey];
                 return link.isActive !== false && pageConfig?.active !== false;
             }).map((link) => (
@@ -22,11 +19,8 @@ const currentPath = Astro.url.pathname;
                     <a
                         href={link.href}
                         class={`nav-link ${
-                            currentPath === link.href ||
-                            (link.href !== "/" &&
-                                currentPath.startsWith(link.href))
-                                ? "active"
-                                : "inactive"
+                            currentPath === link.href || (link.href !== "/" && currentPath.startsWith(link.href))
+                                ? "active" : "inactive"
                         }`}
                     >
                         {link.label}
@@ -37,24 +31,14 @@ const currentPath = Astro.url.pathname;
         }
     </ul>
 
-    <button
-        id="theme-toggle"
-        aria-label="Toggle Dark Mode"
-        class="flex items-center justify-center p-2 hover:text-accent transition-all duration-300 bg-transparent text-foreground cursor-pointer group shrink-0 ml-4"
-    >
-        <div class="relative w-5 h-5">
-            <Icon
-                name="Sun"
-                id="sun-icon"
-                size={20}
-                class="absolute inset-0 hidden dark:block"
-            />
-            <Icon
-                name="Moon"
-                id="moon-icon"
-                size={20}
-                class="absolute inset-0 block dark:hidden"
-            />
-        </div>
-    </button>
+    {showToggle && (
+        <button
+            id="theme-toggle"
+            aria-label="Toggle Dark Mode"
+            class="btn-icon"
+        >
+            <Icon name="Sun" size={18} class="hidden dark:block" />
+            <Icon name="Moon" size={18} class="block dark:hidden" />
+        </button>
+    )}
 </nav>

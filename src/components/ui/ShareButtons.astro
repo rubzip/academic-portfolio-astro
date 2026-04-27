@@ -17,63 +17,20 @@ const shareUrls = {
 };
 ---
 
-<div class="share-buttons flex items-center gap-4 mt-8 pt-6 border-t border-dashed border-border">
-    <span class="text-sm font-semibold opacity-75">Share:</span>
-    <div class="flex gap-3">
-        <a
-            href={shareUrls.twitter}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Share on Twitter"
-            class="share-btn"
-        >
-            <Icon name="Twitter" size={18} />
+<div class="flex items-center gap-4 mt-8 pt-8 border-t border-dashed border-border">
+    <span class="body-sm font-semibold" style="opacity: 0.75;">Share:</span>
+    <div class="flex gap-2">
+        <a href={shareUrls.twitter} target="_blank" rel="noopener noreferrer" aria-label="Share on Twitter" class="icon-btn">
+            <Icon name="Twitter" size={16} />
         </a>
-        <a
-            href={shareUrls.facebook}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Share on Facebook"
-            class="share-btn"
-        >
-            <Icon name="Facebook" size={18} />
+        <a href={shareUrls.facebook} target="_blank" rel="noopener noreferrer" aria-label="Share on Facebook" class="icon-btn">
+            <Icon name="Facebook" size={16} />
         </a>
-        <a
-            href={shareUrls.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Share on LinkedIn"
-            class="share-btn"
-        >
-            <Icon name="LinkedIn" size={18} />
+        <a href={shareUrls.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn" class="icon-btn">
+            <Icon name="LinkedIn" size={16} />
         </a>
-        <a
-            href={shareUrls.email}
-            aria-label="Share via Email"
-            class="share-btn"
-        >
-            <Icon name="Mail" size={18} />
+        <a href={shareUrls.email} aria-label="Share via Email" class="icon-btn">
+            <Icon name="Mail" size={16} />
         </a>
     </div>
 </div>
-
-<style>
-    .share-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        color: var(--foreground);
-        transition: all 0.2s ease;
-    }
-    .share-btn:hover {
-        background: var(--accent);
-        border-color: var(--accent);
-        color: var(--background);
-        transform: translateY(-2px);
-    }
-</style>

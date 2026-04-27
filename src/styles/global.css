@@ -3,10 +3,10 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 
-/* Some CSS utility classes and base variables are adapted from Astro Paper 
-  by Satnaing (https://github.com/satnaing/astro-paper) 
-  Released under the MIT License.
-*/
+/* ===========================================
+   UNIFIED VISUAL IDENTITY SYSTEM
+   Based on DESIGN-GUIDE.md principles
+   =========================================== */
 
 @theme {
     --color-background: var(--background);
@@ -15,8 +15,11 @@
     --color-sidebar-bg: var(--sidebar-bg);
     --color-border: var(--border);
     --color-text-muted: var(--text-muted);
+    --color-surface: var(--surface);
 }
 
+
+/* --- Theme Variables --- */
 :root,
 html[data-theme="light"] {
     --sidebar-bg: var(--background);
@@ -38,254 +41,410 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* Global Content Styling for main area */
-main h1 {
-    font-size: 1.75rem;
+
+/* ===========================================
+   TYPOGRAPHY SYSTEM
+   =========================================== */
+
+/* Headings */
+h1, .title-xl {
+    font-size: 1.5rem;
     font-weight: 800;
-    margin-bottom: 2rem;
-    letter-spacing: -0.025em;
-    line-height: 1.1;
-}
-
-main h2 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-top: 3.5rem;
-    margin-bottom: 1.25rem;
-    border-bottom: 1px solid var(--border);
-    padding-bottom: 0.5rem;
-    letter-spacing: -0.01em;
-}
-
-main p {
-    margin-bottom: 1.5rem;
-    line-height: 1.8;
-    font-size: 1.05rem;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
     color: var(--foreground);
-    opacity: 0.95;
 }
 
-main a {
+h2, .title-lg {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--foreground);
+}
+
+h3, .title-md {
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.4;
+    color: var(--foreground);
+}
+
+/* Body Text */
+p, .body {
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--foreground);
+    opacity: 0.92;
+}
+
+.body-sm {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    color: var(--foreground);
+    opacity: 0.85;
+}
+
+.body-xs {
+    font-size: 0.75rem;
+    line-height: 1.4;
+    color: var(--foreground);
+    opacity: 0.75;
+}
+
+/* Mono (code, tags) */
+code, .mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+/* Links */
+a, .link {
     color: inherit;
     text-decoration: underline;
     text-underline-offset: 4px;
     font-weight: 600;
-    transition: opacity 0.2s;
+    transition: color 0.2s ease, opacity 0.2s ease;
 }
 
-main a:hover {
+/* Global Lists */
+ul {
+    list-style-type: disc;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+ol {
+    list-style-type: decimal;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+li {
+    margin-bottom: 0.5rem;
+}
+
+ul li::marker {
+    color: var(--accent);
+}
+
+a:hover, .link:hover {
     color: var(--accent);
     opacity: 1;
 }
 
-/* Unified Layout Classes */
+
+/* ===========================================
+   LAYOUT & SPACING
+   =========================================== */
+
 .container-narrow {
     max-width: 800px;
     margin: 0;
 }
 
-.page-header {
-    margin-bottom: 3rem;
+.container-full {
+    max-width: none;
 }
 
-.page-title {
-    font-size: 1.75rem;
-    font-weight: 800;
-    margin: 0;
-}
+/* Spacing scale */
+.space-y-1 { margin-bottom: 0.5rem; }
+.space-y-2 { margin-bottom: 1rem; }
+.space-y-3 { margin-bottom: 1.5rem; }
+.space-y-4 { margin-bottom: 2rem; }
 
-.page-subtitle {
-    font-size: 1.1rem;
-    opacity: 0.75;
-    margin-top: 0.5rem;
-    margin-bottom: 3rem;
-}
+.mt-4 { margin-top: 1rem; }
+.mt-8 { margin-top: 2rem; }
+.mb-2 { margin-bottom: 0.5rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-8 { margin-bottom: 2rem; }
 
-/* Unified Item Listing Classes */
-.item-list {
-    display: flex;
-    flex-direction: column;
-    gap: 3.5rem;
-}
+.pt-4 { padding-top: 1rem; }
+.pt-8 { padding-top: 2rem; }
+.pb-4 { padding-bottom: 1rem; }
+.pb-8 { padding-bottom: 2rem; }
 
-.item-card {
-    padding-bottom: 2.5rem;
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.gap-3 { gap: 1.5rem; }
+.gap-4 { gap: 2rem; }
+
+
+/* ===========================================
+   COMPONENT CLASSES
+   =========================================== */
+
+/* Card (list items) */
+.card {
+    padding: 1rem 0;
     border-bottom: 1px dashed var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 2rem;
 }
 
-.item-card:last-child {
+.card:last-child {
     border-bottom: none;
 }
 
-.item-content {
-    flex: 1;
-}
-
-.item-title {
-    font-size: 1.75rem;
-    margin: 0;
-    line-height: 1.2;
+.card-title {
+    font-size: 1.25rem;
     font-weight: 700;
+    line-height: 1.3;
     letter-spacing: -0.01em;
     text-decoration: none;
-    color: inherit;
-    transition: color 0.2s;
+    color: var(--foreground);
+    display: block;
+    margin-bottom: 0.5rem;
+    transition: color 0.2s ease;
 }
 
-.item-title:hover {
+.card-title:hover {
     color: var(--accent);
     text-decoration: underline;
 }
 
-.item-meta {
-    font-size: 0.95rem;
+.card-meta {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--foreground);
     opacity: 0.75;
     display: flex;
     gap: 0.75rem;
     align-items: center;
-    margin-bottom: 1rem;
-    font-weight: 500;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
 }
 
-.item-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    flex-shrink: 0;
-    text-align: right;
-    min-width: 120px;
+.card-desc {
+    font-size: 0.9rem;
+    color: var(--foreground);
+    opacity: 0.8;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-.item-links.horizontal {
-    flex-direction: row;
-    gap: 1.5rem;
-    text-align: left;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-}
-
-.item-links a {
-    text-decoration: none;
-    font-size: 0.95rem;
+.card-link {
+    font-size: 0.85rem;
     font-weight: 700;
     color: var(--foreground);
-    transition: color 0.2s;
     white-space: nowrap;
+    transition: color 0.2s ease;
 }
 
-.item-links a:hover {
+.card-link:hover {
     color: var(--accent);
     text-decoration: underline;
 }
 
-/* Back Link Styling */
-.back-link {
-    margin-bottom: 1.5rem;
-}
 
-.back-link a {
-    text-decoration: none;
-    opacity: 0.75;
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: color 0.2s, opacity 0.2s;
-}
-
-.back-link a:hover {
-    opacity: 1;
-}
-
-/* Prose Styling */
-.prose {
-    line-height: 1.8;
-    font-size: 1.15rem;
-}
-
-.prose p {
-    margin-bottom: 1.5rem;
-}
-
-.prose ul {
-    list-style-type: disc !important;
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-    display: block;
-}
-
-.prose ol {
-    list-style-type: decimal !important;
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-    display: block;
-}
-
-.prose li {
-    margin-bottom: 0.5rem;
-    display: list-item;
-}
-
-.prose li::marker {
-    color: var(--accent);
-    font-weight: 800;
-}
-
-/* Unified Tag Styling (Minimalist) */
-.badge {
+/* Tags/Badges */
+.tag {
     display: inline-flex;
     align-items: center;
-    padding: 0;
-    background-color: transparent;
     color: var(--accent);
-    font-size: 0.95rem;
+    font-size: 0.8rem;
     font-weight: 700;
     line-height: 1;
-    transition: opacity 0.2s;
-    text-decoration: none !important;
-    border: none;
-    opacity: 0.9;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
 }
 
-.badge:hover {
+.tag:hover {
     opacity: 1;
-    text-decoration: underline !important;
+    text-decoration: underline;
 }
 
-/* Sidebar Social Icons */
-.sidebar-social-link {
-    display: inline-block;
-    padding: 0.5rem;
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    background: transparent;
+    color: var(--foreground);
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.btn-sm {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.8rem;
+}
+
+.btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--foreground);
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--background);
+    transform: translateY(-2px);
+}
+
+
+/* Icon Button (for share buttons, social links) */
+.icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--foreground);
+    transition: all 0.2s ease;
+}
+
+.icon-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--background);
+    transform: translateY(-2px);
+}
+
+.icon-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.5px;
+}
+
+
+/* Social Links */
+.social-link {
+    display: inline-flex;
+    padding: 0.25rem;
     opacity: 0.75;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
-.sidebar-social-link:hover {
+.social-link:hover {
     opacity: 1;
     color: var(--accent);
     transform: rotate(6deg);
 }
 
-.sidebar-social-link svg {
-    width: 24px;
-    height: 24px;
+.social-link svg {
+    width: 20px;
+    height: 20px;
     stroke-width: 1.5px;
-    transition: transform 0.2s ease-in-out;
+    transition: transform 0.2s ease;
 }
 
-.sidebar-social-link:hover svg {
+.social-link:hover svg {
     stroke: var(--accent);
 }
 
-/* Navbar Link Styling */
+
+/* ===========================================
+   LAYOUT SECTIONS
+   =========================================== */
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    flex-shrink: 0;
+    border-right: 1px solid var(--border);
+    background: var(--background);
+    transition: background 0.3s ease;
+}
+
+.sidebar-avatar {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--border);
+    transition: border-color 0.3s ease;
+}
+
+.sidebar-avatar:hover {
+    border-color: var(--accent);
+}
+
+.sidebar-name {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--foreground);
+}
+
+.sidebar-info {
+    font-size: 0.85rem;
+    color: var(--foreground);
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+}
+
+.sidebar-bio {
+    font-size: 0.9rem;
+    color: var(--foreground);
+    opacity: 0.8;
+    line-height: 1.5;
+    padding: 0 0.5rem;
+}
+
+/* Navbar */
+.navbar {
+    padding: 1rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    background: var(--background);
+    transition: background 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
 .nav-link {
-    text-decoration: none;
+    font-size: 0.9rem;
     font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.2s;
+    text-decoration: none;
+    color: var(--foreground);
     position: relative;
+    transition: color 0.2s ease;
 }
 
 .nav-link.active {
@@ -303,7 +462,7 @@ main a:hover {
     width: 0;
     height: 4px;
     background-color: var(--accent);
-    transition: all 0.3s;
+    transition: width 0.3s ease;
 }
 
 .nav-link:hover .nav-link-line,
@@ -311,16 +470,274 @@ main a:hover {
     width: 100%;
 }
 
-/* MathML hide fallback */
-.katex-mathml {
-    display: none;
+/* Main Content Area */
+.main-content {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--background);
+    transition: background 0.3s ease;
 }
 
-/* Animations & Structural Styles */
-.animate-in {
-    animation: animate-in 0.5s ease-out;
+.main-body {
+    padding: 1.5rem 2rem 2rem;
 }
-@keyframes animate-in {
+
+.main-body-sm {
+    padding: 1rem 1.5rem 1.5rem;
+}
+
+
+/* Footer */
+.footer {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: var(--foreground);
+    opacity: 0.7;
+}
+
+
+/* ===========================================
+   PAGE SECTIONS
+   =========================================== */
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--foreground);
+    margin: 0;
+}
+
+.page-subtitle {
+    font-size: 1rem;
+    color: var(--foreground);
+    opacity: 0.75;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--foreground);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+
+/* ===========================================
+   PROSE (Content Typography)
+   =========================================== */
+
+.prose {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--foreground);
+}
+
+.prose h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 2rem 0 1rem;
+}
+
+.prose h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.5rem;
+    margin: 1.5rem 0 0.75rem;
+}
+
+.prose h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin: 1.25rem 0 0.5rem;
+}
+
+.prose p {
+    margin-bottom: 1rem;
+}
+
+.prose ul,
+.prose ol {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.prose li {
+    margin-bottom: 0.5rem;
+}
+
+.prose ul li::marker {
+    color: var(--accent);
+    font-weight: 800;
+}
+
+.prose ol li::marker {
+    color: var(--accent);
+    font-weight: 800;
+}
+
+.prose a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.prose a:hover {
+    color: var(--accent);
+}
+
+.prose code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85em;
+    font-weight: 500;
+    background: var(--surface);
+    color: var(--accent);
+    padding: 0.15rem 0.3rem;
+    border-radius: 0.2rem;
+}
+
+.prose pre {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    padding: 1rem;
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+.prose pre code {
+    background: transparent;
+    color: var(--foreground);
+    padding: 0;
+}
+
+.prose img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.25rem;
+    margin: 1rem 0;
+}
+
+.prose blockquote {
+    border-left: 4px solid var(--accent);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    opacity: 0.85;
+    font-style: italic;
+}
+
+.prose hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+}
+
+
+/* ===========================================
+   SHARED COMPONENTS
+   =========================================== */
+
+/* Back Link */
+.back-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--foreground);
+    opacity: 0.7;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+}
+
+.back-link:hover {
+    opacity: 1;
+}
+
+/* Item List */
+.item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Divider */
+.divider {
+    border: none;
+    border-top: 1px dashed var(--border);
+}
+
+.divider-solid {
+    border: none;
+    border-top: 1px solid var(--border);
+}
+
+
+/* ===========================================
+   ICONS (SVG defaults)
+   =========================================== */
+
+.icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-sm { width: 14px; height: 14px; }
+.icon-md { width: 18px; height: 18px; }
+.icon-lg { width: 24px; height: 24px; }
+
+.icon-muted {
+    opacity: 0.7;
+}
+
+
+/* ===========================================
+   ACCESSIBILITY & ANIMATION
+   =========================================== */
+
+*:focus-visible {
+    outline: 2px dashed var(--accent);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+.animate-in {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(10px);
@@ -331,38 +748,20 @@ main a:hover {
     }
 }
 
-.stagger-fade-in > * {
-    animation: fade-in 0.4s ease-out forwards;
-    opacity: 0;
-}
-@keyframes fade-in {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
 
-.timeline-item:last-child .timeline-line {
-    display: none;
-}
-.timeline-item:last-child .timeline-content {
-    padding-bottom: 0;
-}
+/* ===========================================
+   DEV TOOLS SPECIFIC
+   =========================================== */
 
-
-/* Dev Tools: Viewport framing for Screen Visualizer */
 .viewport-frame {
     border: 1px solid var(--border);
-    border-radius: 1rem;
+    border-radius: 0.5rem;
     background: var(--surface);
     overflow: hidden;
     display: flex;
     flex-direction: column;
 }
+
 .viewport-header {
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--border);
@@ -371,29 +770,17 @@ main a:hover {
     justify-content: space-between;
     align-items: center;
 }
-.iframe-wrapper {
-    background: var(--background);
-    display: flex;
-    justify-content: center;
-    overflow: auto;
-    height: 600px;
-}
-.iframe-wrapper iframe {
-    background: var(--background);
-    border: none;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-}
 
-/* Dev Tools: Iframe scaling for Theme Visualizer */
 .iframe-container {
     position: relative;
     width: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    padding-top: 56.25%; /* 16:9 */
     overflow: hidden;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     border: 1px solid var(--border);
     background: var(--background);
 }
+
 .iframe-container iframe {
     position: absolute;
     top: 0;
@@ -403,4 +790,32 @@ main a:hover {
     transform: scale(0.5);
     transform-origin: 0 0;
     border: none;
+}
+
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 1rem;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .sidebar-avatar {
+        width: 64px;
+        height: 64px;
+    }
+
+    .main-body {
+        padding: 1rem;
+    }
 }

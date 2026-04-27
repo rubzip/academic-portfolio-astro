@@ -7,6 +7,6 @@ interface Props {
 const { href, label } = Astro.props;
 ---
 
-<div class="back-link container-narrow">
-    <a href={href}>&larr; Back to {label}</a>
-</div>
+<a href={href} class="back-link">
+    Go back to {label}
+</a>

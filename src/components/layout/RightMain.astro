@@ -3,14 +3,10 @@ import Navbar from "./Navbar.astro";
 import Footer from "./Footer.astro";
 ---
 
-<div
-    class="flex-1 min-w-0 bg-background transition-colors duration-300 flex flex-col"
->
+<div class="main-content">
     <Navbar />
-    <div class="px-8 md:px-16 lg:px-24 pb-12">
-        <main class="animate-in fade-in duration-700">
-            <slot />
-        </main>
-        <Footer />
+    <div class="main-body animate-in">
+        <slot />
     </div>
+    <Footer />
 </div>

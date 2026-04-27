@@ -8,66 +8,41 @@ const bioCollection = await getCollection("bio");
 const bio = bioCollection[0]?.data;
 ---
 
-<aside
-    class="w-[300px] h-screen sticky top-0 bg-background p-12 pt-24 flex flex-col gap-12 shrink-0 max-md:w-full max-md:h-auto max-md:relative max-md:p-8 transition-colors duration-300"
->
-    <div
-        class="sidebar-header flex flex-col items-center text-center max-md:flex-row max-md:text-left max-md:gap-6 max-md:items-center max-md:w-full"
-    >
-        {
-            bio?.avatar && (
-                <div class="mb-10 max-md:mb-0 shrink-0">
-                    <img
-                        src={`/${bio.avatar}`}
-                        alt={bio.name}
-                        class="w-32 h-32 max-md:w-20 max-md:h-20 rounded-full object-cover border-0 contrast-110 hover:contrast-125 transition-all duration-300"
-                    />
-                </div>
-            )
-        }
+<aside class="sidebar max-md:flex-row max-md:flex-wrap max-md:gap-4">
+    <div class="flex flex-col items-center text-center max-md:flex-row max-md:text-left max-md:gap-4 max-md:items-center">
+        {bio?.avatar && (
+            <img
+                src={`/${bio.avatar}`}
+                alt={bio.name}
+                class="sidebar-avatar"
+            />
+        )}
         <div class="flex flex-col items-center max-md:items-start">
-            {
-                bio?.name && (
-                    <h1 class="text-3xl max-md:text-2xl font-extrabold m-0 tracking-tight text-foreground leading-tight">
-                        {bio.name}
-                    </h1>
-                )
-            }
-            {
-                bio?.institution && (
-                    <p class="text-[0.9rem] opacity-75 mt-2 font-medium flex items-center justify-center max-md:justify-start gap-2">
-                        <Icon name="Institution" size={18} class="opacity-70" />
-                        {bio.institution}
-                    </p>
-                )
-            }
-
-            <div
-                class="flex gap-2 flex-wrap items-center justify-center max-md:justify-start mt-6"
-            >
-                {
-                    activeSocials.map((social) => (
-                        <a
-                            href={social.href}
-                            aria-label={social.linkTitle}
-                            title={social.linkTitle}
-                            target="_blank"
-                            rel="noreferrer"
-                            class="sidebar-social-link sm:p-1"
-                        >
-                            <Icon name={social.name} size={24} />
-                        </a>
-                    ))
-                }
+            {bio?.name && <h1 class="sidebar-name">{bio.name}</h1>}
+            {bio?.institution && (
+                <p class="sidebar-info">
+                    <Icon name="Institution" size={16} />
+                    {bio.institution}
+                </p>
+            )}
+            <div class="flex gap-1 flex-wrap items-center justify-center max-md:justify-start mt-4">
+                {activeSocials.map((social) => (
+                    <a
+                        href={social.href}
+                        aria-label={social.linkTitle}
+                        title={social.linkTitle}
+                        target="_blank"
+                        rel="noreferrer"
+                        class="social-link"
+                    >
+                        <Icon name={social.name} size={20} />
+                    </a>
+                ))}
             </div>
-
-            {
-                bio?.shortBio && (
-                    <p class="text-[1rem] leading-relaxed mt-10 text-foreground opacity-90 font-medium max-md:hidden">
-                        {bio.shortBio}
-                    </p>
-                )
-            }
         </div>
     </div>
+
+    {bio?.shortBio && (
+        <p class="sidebar-bio max-md:w-full max-md:order-3">{bio.shortBio}</p>
+    )}
 </aside>
