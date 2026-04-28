@@ -43,10 +43,11 @@ const viewports = [
                                     </div>
                                     <div class="w-10" />
                                 </div>
-                                <div class="iframe-wrapper" style={`padding-top: ${(vp.height / vp.width) * 100}%;`}>
+                                <div class="relative w-full" style={`padding-top: ${(vp.height / vp.width) * 100}%;`}>
                                     <iframe
                                         src="/"
                                         title={`${vp.name} Preview`}
+                                        class="absolute top-0 left-0 w-full h-full border-none"
                                     />
                                 </div>
                             </div>
