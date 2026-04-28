@@ -2,170 +2,107 @@
 
 [![Built with Astro](https://img.shields.io/badge/Built_with-Astro-ff5d01?logo=astro&logoColor=white&style=flat-square)](https://astro.build/)
 [![Styled with Tailwind](https://img.shields.io/badge/Styled_with-Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white&style=flat-square)](https://tailwindcss.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 A fast, minimalist, and highly customizable Astro template designed specifically for researchers, professors, PhD students, and academics. 
 
-Strongly inspired by [Academic Pages](https://github.com/academicpages/academicpages.github.io) and [AstroPaper](https://github.com/satnaing/astro-paper), this template prioritizes content readability, and easy configuration.
+Strongly inspired by [Academic Pages](https://github.com/academicpages/academicpages.github.io) and [AstroPaper](https://github.com/satnaing/astro-paper), this template prioritizes content readability, SEO discoverability, and ease of configuration.
 
-> **[Live Demo](https://astro-academics-page.vercel.app/)**
+> 🌟 **[View the Live Demo](https://shannon.github.io/academic-portfolio-astro/)**
 
-## Features
-# Academic Portfolio: Implemented Features
+---
 
-This document summarizes the core features and functionality implemented in this Astro-based academic portfolio template.
+## ✨ Features
 
-## 🚀 Core Technology Stack
-- **Framework:** [Astro v6](https://astro.build/) - Modern static site generator.
-- **Language:** [TypeScript](https://www.typescriptlang.org/) - Type-safe development.
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/) - Utility-first CSS using the new `@tailwindcss/vite` plugin.
+- **Markdown-Driven Collections:** Easily manage your Blog, Publications, Projects, Talks, and Teaching experience without touching UI code.
+- **Academic Standard:** Out-of-the-box $\LaTeX$ rendering support via KaTeX. Includes structured metadata for Google Scholar indexing (DOI, Journal, PDF Links).
+- **Extensive Theming System:** Built-in Light/Dark mode toggle with a highly customizable underlying design system and several beautiful preset palettes (`notepad`, `leafBlue`, `pikkyDark`, etc).
+- **Peak Performance:** Built with Astro v6 and Tailwind CSS v4, yielding near-perfect Lighthouse scores and 0kb of unnecessary client-side JavaScript.
+- **Privacy-First Analytics:** Includes native configuration options for self-hosted Umami analytics, as well as GA4 support—with built-in lazy-loading strategies to protect Core Web Vitals.
+- **Developer Tools:** Unique built-in visualizers for inspecting themes, typography, and responsive screen sizes on your local development server.
 
-## 🎨 Design & Layout
-- **2-Column Layout:**
-  - **Left Sidebar:** Sticky container with profile image, name, institution, social links, and a short bio.
-  - **Right Main:** Scrollable area for content, navigation, and page-specific layouts.
-- **Responsiveness:** Fully mobile-friendly design (sidebar collapses to a top/bottom header on small screens).
-- **Theme System:**
-  - **Light/Dark Mode:** Built-in toggle with persistence in `localStorage`.
-  - **Preset Themes:** Multiple color schemes (e.g., `default`, `lobster`, `leafBlue`, `astroPaper`, `pikkyDark`).
-  - **Unified UI:** Centralized styling in `global.css` and reusable components.
+---
 
-## 📝 Content Management (Astro Collections)
-The project is strictly "Markdown-driven," allowing users to modify content just by editing `.md` files.
-- **Publications:** Supports authors, date, journal/conference info, DOI, and PDF links.
-- **Talks:** Tracking events, locations, slide decks, and video recordings.
-- **Projects:** Featured projects with tech tags and GitHub links.
-- **Blog (Posts):** Full-featured blog with reading time estimation and tags.
-- **Teaching:** Documenting roles and institutions across semesters.
-- **CV:** Structured education and experience data rendered into a clean layout.
-- **Bio:** Dedicated bio page driven by markdown.
+## 🚀 Getting Started
 
-## 🎓 Academic Features
-- **LaTeX Support:** Integrated `remark-math` and `rehype-katex` for rendering complex mathematical equations.
-- **Rich Meta Metadata:** Extensive support for DOI, ISBN, and external URLs across all academic collections.
+### 1. Create a Repository
+You can initialize a new repository using the GitHub CLI or standard Git:
 
-## 🛠️ Performance & SEO
-- **SEO Ready:** Optimized meta tags (Open Graph, Twitter Cards) and canonical URLs.
-- **Analytics:** Out-of-the-box support for Umami and Google Analytics 4.
-- **Fast Navigation:** Uses Astro's View Transitions (`ClientRouter`) for smooth page loads.
-- **RSS Feed:** Automated feed generation at `/rss.xml`.
-
-## 🔧 Developer Utilities
-- **Content Adapters:** A unified item model transforms diverse content types into a standard renderable format.
-- **Tagging Engine:** Automatic tag extraction and filtering system across all collections.
-- **Developer Tools:** Specialized layouts and utilities for rapid template customization.
-
-
-## Customization Guide
-
-### 1. Update Site Configuration
-Edit `src/config/` to change the site title, description, favicon, and social links.
-- **Favicon**: You can set `SITE.favicon` to any path in `public/`. For example, `"/favicon-academic.svg"` for the default academic icon.
-
-### 2. Add Your Content
-- **Publications**: Add your publications to `src/content/publications/`.
-- **Blog Posts**: Add your blog posts to `src/content/posts/`.
-- **Projects**: Add your projects to `src/content/projects/`.
-- **Bio**: Edit `src/content/bio.md` to update your biography.
-
-### 3. Customize Appearance
-- **Colors**: Edit `src/styles/global.css` to change the color scheme.
-- **Layout**: Edit `src/layouts/Layout.astro` to change the layout.
-
-### 4. Deploy
-Push your changes to GitHub and deploy to GitHub Pages, Netlify, Vercel, or any other hosting provider.
-
-## ✅ Project Status & Progress
- - [x] Refactor code
- - [x] Add tag system.
- - [x] Add RSS button.
- - [x] Script for checking lighthouse score
- - [x] Evaluate github pages deployment (optionally netlify, vercel)
- - [x] Evaluate different screen sizes
- - [x] Active or disable sections and their respective subpages
- - [x] Change GH repo name
- - [x] **VISUAL BUG:** When some navbar buttons are clicked, sidebar moves
- - [x] Add option for null title or null subtitle (and correctly moving page upper)
- - [x] Download icons 
- - [x] Clean and restructure `config.ts`
-### Bugs
- - [x] Sometimes when you first load page, light/dark toggle doesnt work. You have to refresh or change page for doing it
- - [x] Pagination is broken. It doesnt show pagination for blog now. (Closed, it wasnt a bug)
- - [x] when you are on tags/[tag], then when you try to click to listing it redirects you to all/[id] and retries a 404 error
-### TO DO
- - [x] CRITICAL: Finish code simplification, full integrate `types/display.ts`. Probably we should keep (and improve) `ListingItem` and aditionally create `DetailItem`.
- - [x] Add `addDevToolsInProduction` to `SettingsConfig`
- - [x] Add new file `config/social.ts`
- - [x] Add `assets/fonts.ts`?
- - [x] Rethink what to do with `assets/icons.ts`
- - [x] Delete unused features (Lighthouse, scripts, ...)
- - [x] Move theme interface to types. Unify LIGHT_THEMES and DARK_THEMES in themes. Probably we should add an extra parameter to interface (isDark)
- - [x] Naming convention: I would like to change boolean variables (e.g. 'active' -> 'isActive')
- - [x] Maybe adding settings to `bio.md`. Maybe we could place there things like: avatar, name, short_bio, institution...
-```typescript
-// types/config.ts
-export interface SiteConfig {
-    url: string;
-    author: string;
-    description: string;
-    title: string;
-    postPerPage: number;
-    favicon: string;
-}
-
-export interface ThemeConfig {
-    lightAndDark: boolean;
-    themeLight: string;
-    themeDark?: string;
-}
-
-export interface SettingsConfig {
-    showTagsInNavbar: boolean;
-    showRSSInFooter: boolean;
-    addDevToolsInProduction: boolean;
-}
-// types/content.ts
-export interface Bio {
-    name: string;
-    avatar: string;
-    shortBio?: string;
-    institution?: string;
-}
+**Via GitHub CLI (Recommended):**
+```bash
+gh repo create my-portfolio --template="rubzip/academic-portfolio-astro" --clone
+cd my-portfolio
 ```
- - [x] Add code examples and images in posts
- - [x] Remove G4A or consider doing it. It is mandatory to add cookies policy in case we are tracking with G4A. Talk about why is great Umami analytics (low control).
- - [x] Set things for loading lazyly analytics and keeping performance good
- - [x] Add an extra theme visualizer, it should be simpler. Instead of loading the full page maybe would be better loading some easier html
- - [x] Add `images/` folder, `robots.txt`.
- - [x] Add share buttons to posts?
- - [x] Change content to Shannon
- 
-### Aesthetics
- - [x] Define a new style make content more readable and compact
- - [x] Implement definitive themes
-### Features
- - [x] Analytics implementation
- - [x] Add bibtex support? There are 2 options, add bibtex as a feature of every specific article or having a master bibtex doc and mention it for having metadata
- - [x] Improve dev tools.
- - [ ] i18n? Maybe too much coding and not useful enough
-### Clean Code
- - [x] Define types for every feature
- - [x] Refactor
-### Docs
- - [ ] Improve documentation / README
- - [ ] Make look better repo.
- - [ ] Add a post for explaining how to set repository
- - [ ] Add examples with code and evaluate it
- - [ ] Add examples with images
- - [ ] Add more examples, with different configurations 
-### SEO Improvements To-Do
-- [x] **Avoid hardcoded language:** Make the `<html lang="en">` attribute in `BaseLayout.astro` dynamic or tied to the global site configuration.
-- [x] **Pass dynamic metadata to detail pages:** Update `BaseDetail.astro` to extract specific descriptions/excerpts and Open Graph images, and pass them as props to `<BaseLayout>`.
-- [x] **Implement dynamic Open Graph types:** Add an `og:type` prop to differentiate between `website` (for home/listing pages) and `article` (for publications, posts, and talks).
-- [x] **Generate a Sitemap:** Install and configure the `@astrojs/sitemap` integration to ensure search engines can discover and index all dynamic routes.
-- [x] **Add a `robots.txt` file:** Create a static `public/robots.txt` or dynamically generate one to guide web crawlers and provide the sitemap URL.
-- [x] **Implement Structured Data (JSON-LD):** Add Schema.org metadata (e.g., `Person` for the portfolio owner, `ScholarlyArticle` for publications, `BlogPosting` for posts) to improve indexing in Google and Google Scholar.
-- [x] **Add explicit indexing meta tags:** Include `<meta name="robots" content="index, follow">` in the base layout, allowing specific pages (like dev tools) to opt-out via props.
-- [x] **SEO Consultancy:** Performed a comprehensive SEO audit of the codebase to identify opportunities for academic discoverability (Google Scholar integration, semantic tags, internal linking).
 
-## Agentic AI Warning
-This project was mainly vibe coded by strong human supervision. Take it in count in case you dont like LLMs.
+**Via Standard Git:**
+```bash
+git clone https://github.com/rubzip/academic-portfolio-astro.git my-portfolio
+cd my-portfolio
+```
+
+### 2. Install Dependencies
+This project uses Node.js (requires v22.12.0 or higher).
+```bash
+npm install
+```
+
+### 3. Start Development Server
+```bash
+npm run dev
+```
+Your local server will start at `http://localhost:4321`.
+
+---
+
+## ⚙️ Configuration & Customization
+
+The core philosophy of this template is centralized configuration. All site-wide settings are isolated inside the `src/config/` directory.
+
+### Global Site Details
+Open `src/config/site.ts` to edit your overarching metadata, default analytics IDs, and default themes:
+```typescript
+export const SITE: SiteConfig = {
+    website: "https://your-domain.com/",
+    author: "Your Name",
+    desc: "Your academic portfolio.",
+    title: "Portfolio Title",
+    ogImage: "your-image.webp",
+    favicon: "/favicon.svg",
+    lang: "en",
+};
+```
+
+### Content Organization
+The site contains predefined content collections optimized for academic workflows:
+- 📁 `src/content/bio.md`: Your homepage biography.
+- 📁 `src/content/cv/`: Structured markdown arrays of your education and experience.
+- 📁 `src/content/posts/`: Your technical blog posts.
+- 📁 `src/content/publications/`: Scholarly articles, preprints, and conference papers.
+- 📁 `src/content/talks/`: Keynotes, presentations, and colloquia.
+
+*If you do not need all of these pages, you can dynamically disable them by modifying the `isActive` boolean in `src/config/pages.ts`!*
+
+### Theming
+A fully responsive design system dictates the UI styling. Open `src/config/themes.ts` to adjust individual CSS variable properties (`background`, `foreground`, `accent`, `muted`, `border`), or choose from existing defaults.
+
+To preview available themes in real-time on your local machine, visit `http://localhost:4321/dev-tools`.
+
+---
+
+## 🛠️ Build Commands
+
+All standard build commands run through `npm`:
+
+| Command | Action |
+| :--- | :--- |
+| `npm run dev` | Starts the local development server on `localhost:4321` |
+| `npm run build` | Builds your project for production output into `./dist/` |
+| `npm run preview` | Previews your production build locally |
+
+---
+
+## 🤝 Contributing & License
+
+Contributions, issues, and feature requests are always welcome! Feel free to check the [issues page](https://github.com/rubzip/academic-portfolio-astro/issues).
+
+This project is licensed under the MIT License - see the `LICENSE` file for details.
