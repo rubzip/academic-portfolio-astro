@@ -2,7 +2,6 @@
 
 [![Built with Astro](https://img.shields.io/badge/Built_with-Astro-ff5d01?logo=astro&logoColor=white&style=flat-square)](https://astro.build/)
 [![Styled with Tailwind](https://img.shields.io/badge/Styled_with-Tailwind_CSS-38B2AC?logo=tailwind-css&logoColor=white&style=flat-square)](https://tailwindcss.com/)
-[![Deploy with Vercel](https://img.shields.io/badge/Deploy_with-Vercel-000000?logo=vercel&logoColor=white&style=flat-square)](https://vercel.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 
 A fast, minimalist, and highly customizable Astro template designed specifically for researchers, professors, PhD students, and academics. 
@@ -10,7 +9,10 @@ A fast, minimalist, and highly customizable Astro template designed specifically
 Strongly inspired by [Academic Pages](https://github.com/academicpages/academicpages.github.io) and [AstroPaper](https://github.com/satnaing/astro-paper), this template prioritizes content readability, SEO discoverability, and ease of configuration without touching the UI code.
 
 > 🌟 **[View the Live Demo](https://shannon.github.io/academic-portfolio-astro/)**
-
+ - [ ] Sticky navbar (at least on large screens)
+ - [ ] Better readme
+ - [ ] MIT LICENSE INCLUDE
+ - [ ] Better navigation on long pages (go up button / progress bar)
 ---
 
 ## ✨ Features
