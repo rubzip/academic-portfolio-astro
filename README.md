@@ -16,6 +16,8 @@ Strongly inspired by [Academic Pages](https://github.com/academicpages/academicp
  - [ ] Use always `<Image />` Astro component. Squared Aspect ratio for AVATAR!!!!!
  - [ ] Contraste: El texto sobre los fondos (especialmente en clases como .body-xs) no es lo suficientemente oscuro/claro. Revisa tus variables de color --lightFg y --lightBg para que cumplan con el ratio 4.5:1. CHECK FOOTER
  - [ ] Punto de referencia principal (Landmark): Tu HTML necesita una etiqueta <main>. El lector de pantalla no sabe dónde empieza el contenido real. Solución: Envuelve tu contenido principal así: <main class="main-content"> ... </main>.
+ - [ ] robots.txt no es válido 1 error encontrado Si el formato del archivo robots.txt no es correcto, es posible que los rastreadores no puedan interpretar cómo quieres que se rastree o indexe tu sitio web. Más información sobre robots.txt Line # Content Error 4 Sitemap: /sitemap-index.xml Invalid sitemap URL
+ - [ ] /sitemap-index.xml generated is empty
 ---
 
 ## ✨ Features
