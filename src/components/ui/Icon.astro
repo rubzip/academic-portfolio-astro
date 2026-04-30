@@ -12,7 +12,9 @@ interface Props {
 const { name, size = 24, class: className, strokeWidth = 1.5, id } = Astro.props;
 const iconContent = ICONS[name as IconName];
 if (!iconContent) {
-    throw new Error(`[Astro Error]: Unknown icon "${name}"`);
+    throw new Error(
+        `[Unknown Icon]: ${name}`
+    )
 }
 ---
 
