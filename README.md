@@ -23,6 +23,7 @@ Strongly inspired by [Academic Pages](https://github.com/academicpages/academicp
  - [ ] /sitemap-index.xml generated is empty
  - [ ] Update CV UI
  - [ ] Add Search Feature
+ - [ ] Change `src/assets/icons`
 ---
 
 ## ✨ Features
