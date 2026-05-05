@@ -11,7 +11,7 @@ A fast, minimalist, and highly customizable Astro template designed specifically
 
 Strongly inspired by [Academic Pages](https://github.com/academicpages/academicpages.github.io) and [AstroPaper](https://github.com/satnaing/astro-paper), this template prioritizes content readability, SEO discoverability, and ease of configuration without touching the UI code.
 
-> 🌟 **[View the Live Demo](https://academic-portfolio-astro-xi.vercel.app/)**
+> 🌟 **[View the Live Demo](https://astro-academics-page.vercel.app/)**
 
 ## ✨ Features
 
